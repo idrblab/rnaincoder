@@ -135,4 +135,4 @@ python corain.py -t RNA-compound \
 ```
 
 # Question && issue
-If there are any usage problems, welcome to submit issues to this repository or contact author with email wangyunxia@zju.edu.cn
+If there are any usage problems, welcome to submit issues to this repository or contact author with email lfwyx@zju.edu.cn

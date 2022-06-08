@@ -1,8 +1,8 @@
 [![AUR](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://gitee.com/yunxia-wang/corain/blob/main/LICENSE)
-![star](https://gitee.com/GCSZHN/AutoCard/badge/star.svg?theme=white)
+[![GitHub stars](https://img.shields.io/github/stars/idrblab/corain.svg?style=social&label=Stars)](https://github.com/idrblab/corain/)
 [![Python 3.x](https://img.shields.io/badge/Python-3.X-green.svg)](https://www.python.org/)
-![GitHub codesize](https://img.shields.io/github/languages/code-size/GCS-ZHN/AutoCard)
-[![PMID](https://img.shields.io/badge/PMID-30478442-yellow.svg)](https://pubmed.ncbi.nlm.nih.gov/30478442/)
+![GitHub codesize](https://img.shields.io/github/languages/code-size/idrblab/corain)
+[![PMID](https://img.shields.io/badge/PMID-NOT%20available-yellow.svg)](https://pubmed.ncbi.nlm.nih.gov/)
 [![CORAIN](fig/CORAIN-Title.png)](http://idrblab.org/corain/)
 CORAIN is constructed to encode RNA of **(1) providing various coding strategies for RNA from three perspectives, sequence, structure and physical chemical properties, (2) offering the combined coding strategies of RNA-RNA interaction, RNA-protein interaction and RNA-drug interaction, (3) covering the encoding methods not only for conventional machine learning but also the deep learning**. Therefore, users can get the encoding results of RNA or the encoding results of RNA interaction pairs from CORAIN, which can be directly used for artificial intelligence.
 
@@ -26,7 +26,7 @@ CORAIN coding and combined feature evaluation are divided into two parts. Step 1
 This software is developed with Python 3.X, Python 3.X is required as runtime environment. we recommemd user to install [anaconda3](https://www.anaconda.com/) which is well-known as a scientific Python.
 
 ```shell
-git clone https://github.com/wangyx/corain
+git clone https://github.com/idrblab/corain
 cd corain
 # virtual environment are recommended
 conda create -n corain python=3.8

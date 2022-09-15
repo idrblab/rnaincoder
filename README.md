@@ -80,15 +80,21 @@ The paramter "n_select" is corresponsed with parameter "dimension" as following 
 |:-------|:----------------------------|:-------------------------------------------|
 |1       |Open reading frame           |Sequence-intrinsic Features:One-hot encoding|
 |2       |Entropy density of transcript|Sparse encoding                             |
-|3       |OGlobal descriptor           |Structure-based Features:One-hot encoding   |
+|3       |Global descriptor            |Structure-based Features:One-hot encoding   |
 |4       |K-mer                        |-                                           |
 |5       |Codon related                |-                                           |
-|6       |Pseudo protein related       |-                                           |
-|7       |Guanine-cytosine related     |-                                           |
+|6       |Guanine-cytosine related     |-                                           |
+|7       |Pseudo protein related       |-                                           |
 |8       |Nucleotide related           |-                                           |
-|9       |Secondary structure          |-                                           |
-|10      |EIIP based spectrum          |-                                           |
-
+|9       |EIIP based spectrum          |-                                           |
+|10      |Lipoaffinity index           |-                                           |
+|11      |Partition coefficient        |-                                           |
+|12      |Molar refractivity           |-                                           |
+|13      |Hydrogen bond related        |-                                           |
+|14      |Secondary structure          |-                                           |
+|15      |Topological indices          |-                                           |
+|16      |Molecular fingerprint        |-                                           |
+|17      |3D Structure-based           |-                                           |
 
 ![1D](fig/CORAIN-1D.png)
 

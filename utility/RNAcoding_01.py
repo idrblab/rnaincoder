@@ -11,7 +11,7 @@ import argparse as agp
 
 sys.path.append("..")
 
-import methods.Methods_all_standlone as Methods_all
+import methods.Methods_all_16_methods as Methods_all
 import methods.proteinMeth as proteinMeth
 import methods.MoleculerMeths as MoleculerMeths
 
@@ -63,10 +63,10 @@ def press_oneProtein(methodsAs, Afilepath):
         Aresult = round(Aresult.iloc[:, :], 6)
         for i in range(1, len(methodsAs)):
             result_n = proteinMeth.switch_prometh(proteinMeth.dictMe[methodsAs[i]], Afilepath)
-            print(result_n)
-            result_n.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/result_n.csv')
-            print(Aresult)
-            Aresult.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/Aresult.csv')
+            # print(result_n)
+            # result_n.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/result_n.csv')
+            # print(Aresult)
+            # Aresult.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/Aresult.csv')
             Aresult = pd.concat([Aresult, result_n], axis=1, join='inner')
             Aresult = round(Aresult.iloc[:, :], 6)
     return Aresult
@@ -76,20 +76,20 @@ def press_twoProtein(methodsAs, Afilepath):
     if len(methodsAs) == 1:
         seqname2D, Aresult = proteinMeth.switch_prometh(proteinMeth.dictMe[methodsAs[0]], Afilepath)
         Aresult = np.around(Aresult, decimals=6)
-        print(methodsAs[0])
-        print(Aresult.shape)
+        # print(methodsAs[0])
+        # print(Aresult.shape)
     else:
         methodsA1 = methodsAs[0]
-        print(methodsA1)
+        # print(methodsA1)
         seqname2D, Aresult = proteinMeth.switch_prometh(proteinMeth.dictMe[methodsA1], Afilepath)
         Aresult = np.around(Aresult, decimals=6)
-        print(Aresult.shape)
+        # print(Aresult.shape)
         for i in range(1, len(methodsAs)):
-            print(methodsAs[i])
+            # print(methodsAs[i])
             seqname2D, result_n = proteinMeth.switch_prometh(proteinMeth.dictMe[methodsAs[i]], Afilepath)
-            print(result_n.shape)
+            # print(result_n.shape)
             Aresult = np.concatenate((Aresult, result_n), axis=2)
-            print(Aresult.shape)
+            # print(Aresult.shape)
             Aresult = np.around(Aresult, decimals=6)
     return seqname2D, Aresult
 
@@ -119,7 +119,7 @@ def remove_uncorrectchacter(infasta):
 
     
     name_seq = dict(zip(seqnames, sequences))
-    # 重新写入新的删除非法字符的fasta文件
+    
     A_save = open(infasta, 'w')
     for seqname in list(dict_data.keys()):
         a_seq = dict_data[seqname]
@@ -143,7 +143,7 @@ def remove_uncorrectchacter_protein(infasta):
             seqnames.append(seqid)
             dict_data[seqid] = sequence_o
             sequences.append(sequence_o)
-    # 重新写入新的删除非法字符的fasta文件
+
     A_save = open(infasta, 'w')
     for seqname in list(dict_data.keys()):
         a_seq = dict_data[seqname]
@@ -195,11 +195,10 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
     '9', 'Secondary structure (1D)'
     '10', 'EIIP based spectrum (1D)'
     '''
-    ######### 获取文件A处理方法 ------------------------------------------------------------------------------
-    #所有RNA的一维和二维方法总和
+    ######### get the methods of file A ------------------------------------------------------------------------------
+    #all methods
     methodsAs00s_all = list(Methods_all.dictMe.keys())
 
-    # 将所有的方法分为一维和二维方法
     methodsAs_1D = []
     methodsAs_2D = []
 
@@ -209,19 +208,17 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
             methodsAs_1D.append(methodsAs00)
         elif methodsAs00[-3:-1] == '2D':
             methodsAs_2D.append(methodsAs00)
-    # methodsAs_1D  = ['Open reading frame (1D)', 'Transcript related (1D)', 'EDP (1D)', 'CTD (1D)', 'Kmers (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)', 'Solubility lipoaffinity (1D)', 'Partition coefficient (1D)', 'Polarizability refractivity (1D)', 'Hydrogen bond related (1D)', 'Topological indice (1D)', 'Molecular fingerprint (1D)']
-    methodsAs_1D  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)']
-    methodsAs_2D = []
-    print('methods: ')
-    # print(methodsAs_1D)
-    print(methodsAs_2D)
 
-    # 判断是否存在文件夹如果不存在则创建为文件夹
+    methodsAs_1D  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']
+    methodsAs_2D = []
+    # print('methods: ')
+    # print(methodsAs_2D)
+
     Resultpath = Resultpath + '/encoding_features'
     os.makedirs(Resultpath, exist_ok= True)
 
     remove_uncorrectchacter(Afastapath)
-    print('remove_uncorrectchacter is right')
+    print('remove uncorrectchacter is right')
 
     # RNA
     if dimension == '1':
@@ -244,12 +241,12 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
                 methodsAs_1D02 = list(methodsAs_1D01)
                 print('dimension %s !' % dimension)
             
-                ####一维处理过程
-                print('The method is starting!')
+                #### one demensional methods
+                # print('The method is starting!')
                 Aresult_F_1D = press_oneRNA(methodsAs_1D02, Afastapath)
                 
-                print('Aresult_F_1D.head()')
-                print(Aresult_F_1D.head())
+                # print('Aresult_F_1D.head()')
+                # print(Aresult_F_1D.head())
                 trainval_seq_data = pd.read_csv(Interfilepath)
                 trainval_seq_data01  = trainval_seq_data.replace('>', '',regex =True)
                 tranval_A = trainval_seq_data01.iloc[:,0]
@@ -259,18 +256,18 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
                 A_fea = pd.merge(tranval_A, Aresult_F_1D, left_on='Seqname', right_index=True, how='left', sort=False)
                 # replace NA with 0
                 A_fea = A_fea.fillna(0)
-                print('A_fea.head()')
-                print(A_fea.head())
-                # 合并AB文件
+                # print('A_fea.head()')
+                # print(A_fea.head())
+                # combine the file
                 A_res = np.array(A_fea.iloc[:,1:], np.float64)
                 # A_res = A_res.astype(np.float64)
-                print('A_res.shape')
-                print(A_res.shape)
-                print('A_res.dtype')
-                print(A_res.dtype)
+                # print('A_res.shape')
+                # print(A_res.shape)
+                # print('A_res.dtype')
+                # print(A_res.dtype)
 
                 methodsAs_1D01_01 = str(methodsAs_1D01).split("'")[1]
-                print(savetype)
+                # print(savetype)
                 if 'npy' in savetype:
                     FilepathA = os.path.join(Resultpath, str(methodsAs_1D01_01) + '.npy')
                     np.save(FilepathA, A_res)
@@ -278,7 +275,7 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
                     A_fea.to_csv(os.path.join(Resultpath, str(methodsAs_1D01_01) + '.csv'))
                 print('The %s method is ending!' % num)
     elif dimension == '2':
-        # 二维RNA
+        # two demensional methods
         for n in range(1, 2, 1):
             methodsAs_2Ds = list(itertools.combinations(methodsAs_2D, n))
             for num in range(0, len(methodsAs_2Ds), 1):
@@ -286,7 +283,7 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
                 print('The %s method is starting!' % num)
                 print(list(methodsAs_2D01))
                 methodsAs_2D02 = list(methodsAs_2D01)
-                ####一维处理过程
+
                 seqname2D_A, Aresult_F_2D = press_twoRNA(methodsAs_2D02, Afastapath)
                 A_res = Aresult_F_2D
         
@@ -296,11 +293,10 @@ def RNA_coding(Afastapath, Interfilepath, Resultpath, dimension = '1', savetype 
                 print('The %s method is ending!' % num)
 # RNA RNA coding analysis---------------------------------------------------------------------------
 def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,savetype,n_select =None):
-    ######### 获取文件A处理方法 ------------------------------------------------------------------------------
-    #所有RNA的一维和二维方法总和
+    #########------------------------------------------------------------------------------
+
     methodsAs00s_all = list(Methods_all.dictMe.keys())
 
-    # 将所有的方法分为一维和二维方法
     methodsAs_1D = []
     methodsAs_2D = []
     
@@ -310,12 +306,11 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
             methodsAs_1D.append(methodsAs00)
         elif methodsAs00[-3:-1] == '2D':
             methodsAs_2D.append(methodsAs00)
-    print('protein methods: ')
-    print(methodsAs_1D)
-    print(methodsAs_2D)
-    methodsAs_1D = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)']
+    # print('protein methods: ')
+    # print(methodsAs_1D)
+    # print(methodsAs_2D)
+    methodsAs_1D  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']
 
-    # 判断是否存在文件夹如果不存在则创建为文件夹
     Resultpath = Resultpath + '/encoding_features'
     os.makedirs(Resultpath, exist_ok= True)
 
@@ -327,8 +322,8 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
     trainval_seq_data01  = trainval_seq_data.replace('>', '',regex =True)
     tranval_A = trainval_seq_data01['A']
     tranval_B = trainval_seq_data01['B']
-    print('tranval_A')
-    print(tranval_A)
+    # print('tranval_A')
+    # print(tranval_A)
 
     # RNA
     for n in range(1, 2, 1):
@@ -349,13 +344,9 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
             print(list(methodsAs_1D01))
             methodsAs_1D02 = list(methodsAs_1D01)
             if dimension == '1':
-                ####一维处理过程
+                ####
                 Aresult_F_1D = press_oneRNA(methodsAs_1D02, Afastapath)
                 Bresult_F_1D = press_oneRNA(methodsAs_1D02, Bfastapath)
-                
-                print('Aresult_F_1D.head()')
-                print(Aresult_F_1D.head())
-
 
                 A_fea = pd.merge(tranval_A, Aresult_F_1D, left_on='A', right_index=True, how='left', sort=False)
                 B_fea = pd.merge(tranval_B, Bresult_F_1D, left_on='B', right_index=True, how='left', sort=False)
@@ -365,20 +356,10 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
                     B_fea = B_fea.fillna(0)
                 except Exception as e:
                     continue
-                print('A_fea.head()')
-                print(A_fea.head())
-                print('B_fea.head()')
-                print(B_fea.head())
-                # 合并AB文件
+                # 
                 A_res = np.array(A_fea.iloc[:,1:], np.float64)
                 # A_res = A_res.astype(np.float64)
-                print('A_res.shape')
-                print(A_res.shape)
-                print('A_res.dtype')
-                print(A_res.dtype)
                 B_res = np.array(B_fea.iloc[:,1:], np.float64)
-                print('B_res.shape')
-                print(B_res.shape)
 
                 methodsAs_1D01_01 = str(methodsAs_1D01).split("'")[1]
                 if 'npy' in savetype:
@@ -393,7 +374,7 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
                 print('The %s method is ending!' % num)
 
     if dimension == '2':
-        # 二维RNA
+        # 
         nameA =np.array(tranval_A)
         nameB =np.array(tranval_B)
         for n in range(1, 2, 1):
@@ -403,7 +384,7 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
                 print('The %s method is starting!' % num)
                 print(list(methodsAs_2D01))
                 methodsAs_2D02 = list(methodsAs_2D01)
-                ####一维处理过程
+                ####
                 seqname2D_A, Aresult_F_2D = press_twoRNA(methodsAs_2D02, Afastapath)
                 seqname2D_B, Bresult_F_2D = press_twoRNA(methodsAs_2D02, Bfastapath)
                 print(nameA)
@@ -419,12 +400,12 @@ def RNA_RNA_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,save
                 print('The %s method is ending!' % num)
 # RNA protein coding analysis---------------------------------------------------------------------------
 def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,savetype,n_select =None):
-    ######### 获取文件A处理方法 ------------------------------------------------------------------------------
-    #所有RNA的一维和二维方法总和
+    ######### ------------------------------------------------------------------------------
+    #
     methodsAs00s_all = list(Methods_all.dictMe.keys())
     methodsBs00s_all = list(proteinMeth.dictMe.keys())
 
-    # 将RNA所有的方法分为一维和二维方法
+
     methodsAs_1D = []
     methodsAs_2D = []
     #RNA
@@ -436,7 +417,7 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
     print('methods: ')
     print(methodsAs_1D)
     print(methodsAs_2D)
-    # 将protein所有的方法分为一维和二维方法
+    # 
     methodsBs_1D = []
     methodsBs_2D = []
     #protein
@@ -449,7 +430,7 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
     print(methodsBs_1D)
     print(methodsBs_2D)    
 
-    # 判断是否存在文件夹如果不存在则创建为文件夹
+    # 
     Resultpath = Resultpath + '/encoding_features'
     os.makedirs(Resultpath, exist_ok= True)
 
@@ -470,10 +451,10 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
         Bresult_F_1D = press_oneProtein(methodsBs_1D, Bfastapath)
         B_fea = pd.merge(tranval_B, Bresult_F_1D, left_on='B', right_index=True, how='left', sort=False)
         B_res = np.array(B_fea.iloc[:,1:], np.float64)
-        print('B_fea.head()')
-        print(B_fea.head())                        
-        print('B_res.shape')
-        print(B_res.shape)
+        # print('B_fea.head()')
+        # print(B_fea.head())                        
+        # print('B_res.shape')
+        # print(B_res.shape)
 
         if 'npy' in savetype:
             FilepathB = os.path.join(Resultpath, 'protein_B.npy')
@@ -500,11 +481,11 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
                 print(list(methodsAs_1D01))
                 methodsAs_1D02 = list(methodsAs_1D01)
                 
-                ####一维处理过程
+                ###
                 Aresult_F_1D = press_oneRNA(methodsAs_1D02, Afastapath)               
                 
-                print('Aresult_F_1D.head()')
-                print(Aresult_F_1D.head())
+                # print('Aresult_F_1D.head()')
+                # print(Aresult_F_1D.head())
 
                 A_fea = pd.merge(tranval_A, Aresult_F_1D, left_on='A', right_index=True, how='left', sort=False)
                 # replace NA with 0
@@ -512,13 +493,13 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
                     A_fea = A_fea.fillna(0)
                 except Exception as e:
                     continue
-                print('A_fea.head()')
-                print(A_fea.head())
+                # print('A_fea.head()')
+                # print(A_fea.head())
 
                 A_res = np.array(A_fea.iloc[:,1:], np.float64)
                 # A_res = A_res.astype(np.float64)
-                print('A_res.shape')
-                print(A_res.shape)
+                # print('A_res.shape')
+                # print(A_res.shape)
 
                 methodsAs_1D01_01 = str(methodsAs_1D01).split("'")[1]
                 if 'npy' in savetype:
@@ -529,14 +510,14 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
                 print('The %s method is ending!' % num)
 
     if dimension == '2':
-        # 二维protein
+        # 
         nameB =np.array(tranval_B)
         seqname2D_B, Bresult_F_2D = press_twoProtein(methodsBs_2D, Bfastapath)
         B_res = mk_numpy(Bresult_F_2D,seqname2D_B,nameB)
         FilepathB = os.path.join(Resultpath, 'protein_B.npy')
         np.save(FilepathB, B_res)
 
-        # 二维RNA
+        # 
         nameA =np.array(tranval_A)        
         for n in range(1, 2, 1):
             methodsAs_2Ds = list(itertools.combinations(methodsAs_2D, n))
@@ -545,7 +526,7 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
                 print('The %s method is starting!' % num)
                 print(list(methodsAs_2D01))
                 methodsAs_2D02 = list(methodsAs_2D01)
-                ####一维处理过程
+                ###
                 seqname2D_A, Aresult_F_2D = press_twoRNA(methodsAs_2D02, Afastapath)                
                 print(nameA)
                 print(seqname2D_A)
@@ -556,12 +537,12 @@ def RNA_protein_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,
                 print('The %s method is ending!' % num)
 # RNA compound coding analysis---------------------------------------------------------------------------
 def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension,savetype,n_select =None):
-    ######### 获取文件A处理方法 ------------------------------------------------------------------------------
-    #所有RNA的一维和二维方法总和
+    #########  ------------------------------------------------------------------------------
+    #
     methodsAs00s_all = list(Methods_all.dictMe.keys())
     methodsBs00s_all = list(MoleculerMeths.dictMe.keys())
 
-    # 将RNA所有的方法分为一维和二维方法
+
     methodsAs_1D = []
     methodsAs_2D = []
     #RNA
@@ -570,11 +551,10 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
             methodsAs_1D.append(methodsAs00)
         elif methodsAs00[-3:-1] == '2D':
             methodsAs_2D.append(methodsAs00)
-    print('methods: ')
-    print(methodsAs_1D)
-    print(methodsAs_2D)
+    # print('methods: ')
+    # print(methodsAs_1D)
+    # print(methodsAs_2D)
 
-    # 判断是否存在文件夹如果不存在则创建为文件夹
     Resultpath = Resultpath + '/encoding_features'
     os.makedirs(Resultpath, exist_ok= True)
 
@@ -591,17 +571,17 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
     # encoding compound
     ResfilePath = os.path.join(Resultpath, 'MoleculerResult.csv')
     Bresult_F_1D = MoleculerMeths.Moleculer_methods(Bfastapath,ResfilePath,Interfilepath,methodsBs00s_all)
-    print('tranval_B')
-    print(tranval_B)
-    print('Bresult_F_1D')
-    print(Bresult_F_1D)
+    # print('tranval_B')
+    # print(tranval_B)
+    # print('Bresult_F_1D')
+    # print(Bresult_F_1D)
     # B_fea = pd.merge(tranval_B, Bresult_F_1D, left_on='B', right_index=True, how='left', sort=False)
     B_fea = Bresult_F_1D
     B_res = np.array(B_fea.iloc[:,1:], np.float64)
-    print('B_fea.head()')
-    print(B_fea.head())                        
-    print('B_res.shape')
-    print(B_res.shape)
+    # print('B_fea.head()')
+    # print(B_fea.head())                        
+    # print('B_res.shape')
+    # print(B_res.shape)
 
 
     # RNA
@@ -631,11 +611,11 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
                 print(list(methodsAs_1D01))
                 methodsAs_1D02 = list(methodsAs_1D01)
                 
-                ####一维处理过程
+                ####
                 Aresult_F_1D = press_oneRNA(methodsAs_1D02, Afastapath)               
                 
-                print('Aresult_F_1D.head()')
-                print(Aresult_F_1D.head())
+                # print('Aresult_F_1D.head()')
+                # print(Aresult_F_1D.head())
 
                 A_fea = pd.merge(tranval_A, Aresult_F_1D, left_on='A', right_index=True, how='left', sort=False)
                 # replace NA with 0
@@ -643,13 +623,13 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
                     A_fea = A_fea.fillna(0)
                 except Exception as e:
                     continue
-                print('A_fea.head()')
-                print(A_fea.head())
+                # print('A_fea.head()')
+                # print(A_fea.head())
 
                 A_res = np.array(A_fea.iloc[:,1:], np.float64)
-                # A_res = A_res.astype(np.float64)
-                print('A_res.shape')
-                print(A_res.shape)
+
+                # print('A_res.shape')
+                # print(A_res.shape)
 
                 methodsAs_1D01_01 = str(methodsAs_1D01).split("'")[1]
                 if 'npy' in savetype:
@@ -660,7 +640,7 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
                 print('The %s method is ending!' % num)
 
     if dimension == '2':
-        # 二维RNA
+        # 
         nameA =np.array(tranval_A)        
         for n in range(1, 2, 1):
             methodsAs_2Ds = list(itertools.combinations(methodsAs_2D, n))
@@ -669,7 +649,7 @@ def RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,Resultpath,dimension
                 print('The %s method is starting!' % num)
                 print(list(methodsAs_2D01))
                 methodsAs_2D02 = list(methodsAs_2D01)
-                ####一维处理过程
+                ####
                 seqname2D_A, Aresult_F_2D = press_twoRNA(methodsAs_2D02, Afastapath)                
                 print(nameA)
                 print(seqname2D_A)

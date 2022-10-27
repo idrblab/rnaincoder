@@ -21,21 +21,34 @@ import tensorflow as tf
 import time
 import xgboost as xgb
 tqdm.pandas(ascii=True)
+import os
+from argparse import ArgumentParser
+from functools import reduce
+import pandas as pd
 
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras import Input
+from tensorflow.keras.utils import to_categorical
+
+import glob
+from sklearn.preprocessing import MinMaxScaler
 
 def make_comcod(com_n = None):
     # make the combination list of coding methods
-    methods_1Ds  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)']
-    if com_n:
-        combination_methods = list(itertools.combinations(methods_1Ds, com_n))
-    else:
-        for num in range(len(methods_1Ds)):
-            com_temp = list(itertools.combinations(methods_1Ds, num+1))
-            if num == 0:
-                combination_methods = com_temp
-            else:
-                combination_methods = combination_methods + com_temp
-                     
+    # methods_1Ds  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']
+
+    # if com_n:
+    #     combination_methods = list(itertools.combinations(methods_1Ds, com_n))
+    # else:
+    #     for num in range(len(methods_1Ds)):
+    #         com_temp = list(itertools.combinations(methods_1Ds, num+1))
+    #         if num == 0:
+    #             combination_methods = com_temp
+    #         else:
+    #             combination_methods = combination_methods + com_temp
+    combination_methods =  [['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']]
+
     return combination_methods
     
 def standardization(X):
@@ -69,8 +82,8 @@ def mknpy_RNA_RNA(combin2,datapath):
             combnpysA = np.concatenate((combnpysA, file_tempA), axis=1)
             combnpysB = np.concatenate((combnpysB, file_tempB), axis=1)
     # print('Feature A and B file shape is {shapeA},{shapeB}'.format(shapeA = combnpysA.shape,shapeB = combnpysB.shape))
-    combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
-    return combineFeat
+    # combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
+    return combnpysA,combnpysB
 
 def mknpy_RNA_pro(combin2,datapath):
     # generate the npy data according to the combination lists
@@ -81,8 +94,8 @@ def mknpy_RNA_pro(combin2,datapath):
             combnpysA = file_tempA
         else:
             combnpysA = np.concatenate((combnpysA, file_tempA), axis=1)
-    combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
-    return combineFeat
+    # combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
+    return combnpysA,combnpysB
 
 def mknpy_RNA_compound(combin2,datapath):
     # generate the npy data according to the combination lists
@@ -97,8 +110,8 @@ def mknpy_RNA_compound(combin2,datapath):
     print(combnpysA.shape)
     print('combnpysB')
     print(combnpysB.shape)
-    combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
-    return combineFeat
+    # combineFeat = np.concatenate((combnpysA,combnpysB),axis = 1)
+    return combnpysA,combnpysB
 
 def svm_two(train_x, valid_x, train_y, valid_y):
     # 合并训练集和验证集
@@ -559,23 +572,393 @@ def train_model(X_train,y_train,X_test,y_test,modelnm = 'DNN'):
     Acc, Sn, Sp, Pre, MCC, AUC = dfres[1],dfres[2],dfres[3],dfres[4],dfres[5],dfres[6]
     return Acc, Sn, Sp, Pre, MCC, AUC,dfres[0]
 
-def get_abbre(com_lists):
-    dict_abre = {
-        'Open reading frame (1D)': 'ORF',
-        'Entropy density of transcript (1D)': 'EDT',
-        'Global descriptor (1D)': 'GBD',
-        'K-mer (1D)': 'KME',
-        'Codon related (1D)': 'CDR',
-        'Pseudo protein related (1D)': 'PPR',
-        'Guanine-cytosine related (1D)': 'GCR',
-        'Nucleotide related (1D)': 'NTR',
-        'Secondary structure (1D)': 'SST',
-        'EIIP based spectrum (1D)': 'EBS'
-    }
-    abres = [dict_abre[methnm] for methnm in com_lists]
-    return '+'.join(abres)
+def rna_encoder_1(data_train_r_npy,data_vaild_r_npy,lr_r,epoch_r,batch_size_r,save_path):
+    # lr = 1e-4
+    # epoch = 100
+    # batch_size = 64
 
-def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 2,modelnm = 'RF'):
+    input_shape = data_train_r_npy.shape[1]
+    x_input_r = Input(input_shape)
+    x_input01 = tf.expand_dims(x_input_r, axis=2)
+    x_input01 = tf.expand_dims(x_input01, axis=3)
+    print('x_input: {}'.format(x_input01.shape))
+
+    # ENCODER
+    conv_1 = tf.keras.layers.Conv2D(filters=45,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(x_input01)
+    batch_norm_1 = tf.keras.layers.BatchNormalization()(conv_1)
+    pooling_1 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_1)
+    print('pooling_1: {}'.format(pooling_1.shape))
+
+    conv_2 = tf.keras.layers.Conv2D(filters=32,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_1)
+    # print(conv_2.shape)
+    batch_norm_2 = tf.keras.layers.BatchNormalization()(conv_2)
+    pooling_2 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=4, padding='valid')(batch_norm_2)
+    print('pooling_2: {}'.format(pooling_2.shape))
+
+    conv_3 = tf.keras.layers.Conv2D(filters=16,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_2)
+    # print(conv_3.shape)
+    batch_norm_3 = tf.keras.layers.BatchNormalization()(conv_3)
+    pooling_3 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_3)
+    print('pooling_3: {}'.format(pooling_3.shape))
+
+    Flatten1 = tf.keras.layers.Flatten()(pooling_3)
+    print('Flatten1: {}'.format(Flatten1.shape))
+
+    Dense_encoder1 = tf.keras.layers.Dense(units=100, activation=tf.nn.relu)(Flatten1)
+    print('Dense_encoder1: {}'.format(Dense_encoder1.shape))
+
+    encode_r = Dense_encoder1
+    print('encode_r: {}'.format(encode_r.shape))
+
+    Dense_decoder1 = tf.keras.layers.Dense(units=Flatten1.shape[1], activation=tf.nn.relu)(encode_r)
+    print('Dense_decoder1: {}'.format(Dense_decoder1.shape))
+    print('Dense_decoder1 dtype: {}'.format(Dense_decoder1.dtype))
+    
+    Dense_decoder1_npy_reshape = tf.keras.layers.Reshape((41, 1, 16))(Dense_decoder1)
+    print('Dense_decoder1_npy_reshape: {}'.format(Dense_decoder1_npy_reshape.shape))
+
+    # DECODER
+    conv_trans_1 = tf.keras.layers.Conv2DTranspose(16, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
+    batch_norm_trans_1 = tf.keras.layers.BatchNormalization()(conv_trans_1)
+    print('batch_norm_trans_1: {}'.format(batch_norm_trans_1.shape))
+
+    conv_trans_2 = tf.keras.layers.Conv2DTranspose(32, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(batch_norm_trans_1)  # =>(26, 26, 128)
+    batch_norm_trans_2 = tf.keras.layers.BatchNormalization()(conv_trans_2)
+    print('batch_norm_trans_2: {}'.format(batch_norm_trans_2.shape))
+
+    conv_trans_3 = tf.keras.layers.Conv2DTranspose(45, kernel_size=(3, 1),strides=1,activation=tf.nn.relu)(batch_norm_trans_2)  # =>(26, 26, 128)
+    batch_norm_trans_3 = tf.keras.layers.BatchNormalization()(conv_trans_3)
+    print('batch_norm_trans_3: {}'.format(batch_norm_trans_3.shape))
+
+    output00_1 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(2, 1), padding='same',strides=1, activation=tf.nn.relu)(batch_norm_trans_3)  # =>(26, 26, 128)
+    print('output00_1: {}'.format(output00_1.shape))
+    output00_1_1 = tf.keras.layers.Reshape((output00_1.shape[1]*output00_1.shape[2], 1, 1))(output00_1)
+    print('output00_1_1: {}'.format(output00_1_1.shape))
+    output01 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(2, 1), strides=1, activation='sigmoid')(output00_1_1)
+    print('output01: {}'.format(output01.shape))
+    # output layer
+    output02 = tf.squeeze(output01,  axis=2)
+    output = tf.squeeze(output02, axis=2)
+    print('output: {}'.format(output.shape))
+    autoencoder = tf.keras.Model(inputs=x_input_r, outputs=output)
+    # define autoencoder model
+
+    weight_decay = 1e-4
+    opt = tf.keras.optimizers.Adam(lr= lr_r, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+    autoencoder.compile(optimizer = opt,loss='mse')
+
+    # fit the autoencoder model to reconstruct input
+    history = autoencoder.fit(data_train_r_npy, data_train_r_npy, epochs=epoch_r, batch_size=batch_size_r, verbose=2, validation_data=(data_vaild_r_npy,data_vaild_r_npy))
+
+    encoder_rna = tf.keras.Model(inputs=x_input_r, outputs=encode_r)
+    encoder_rna.save( save_path + '/encoder_rna_1.h5')
+    return encoder_rna
+
+def rna_encoder_2(data_train_r_npy,data_vaild_r_npy,lr_r,epoch_r,batch_size_r,save_path):
+    # lr = 1e-4
+    # epoch = 100
+    # batch_size = 64
+
+    input_shape = data_train_r_npy.shape[1]
+    x_input_r = Input(input_shape)
+    x_input01 = tf.expand_dims(x_input_r, axis=2)
+    x_input01 = tf.expand_dims(x_input01, axis=3)
+    print('x_input: {}'.format(x_input01.shape))
+
+    # ENCODER
+    conv_1 = tf.keras.layers.Conv2D(filters=45,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(x_input01)
+    batch_norm_1 = tf.keras.layers.BatchNormalization()(conv_1)
+    pooling_1 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_1)
+    print('pooling_1: {}'.format(pooling_1.shape))
+
+    conv_2 = tf.keras.layers.Conv2D(filters=32,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_1)
+    # print(conv_2.shape)
+    batch_norm_2 = tf.keras.layers.BatchNormalization()(conv_2)
+    pooling_2 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=4, padding='valid')(batch_norm_2)
+    print('pooling_2: {}'.format(pooling_2.shape))
+
+    conv_3 = tf.keras.layers.Conv2D(filters=16,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_2)
+    # print(conv_3.shape)
+    batch_norm_3 = tf.keras.layers.BatchNormalization()(conv_3)
+    pooling_3 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_3)
+    print('pooling_3: {}'.format(pooling_3.shape))
+
+    Flatten1 = tf.keras.layers.Flatten()(pooling_3)
+    print('Flatten1: {}'.format(Flatten1.shape))
+
+    Dense_encoder1 = tf.keras.layers.Dense(units=100, activation=tf.nn.relu)(Flatten1)
+    print('Dense_encoder1: {}'.format(Dense_encoder1.shape))
+
+    encode_r = Dense_encoder1
+    print('encode_r: {}'.format(encode_r.shape))
+
+    Dense_decoder1 = tf.keras.layers.Dense(units=Flatten1.shape[1], activation=tf.nn.relu)(encode_r)
+    print('Dense_decoder1: {}'.format(Dense_decoder1.shape))
+    print('Dense_decoder1 dtype: {}'.format(Dense_decoder1.dtype))
+    
+    Dense_decoder1_npy_reshape = tf.keras.layers.Reshape((41, 1, 16))(Dense_decoder1)
+    print('Dense_decoder1_npy_reshape: {}'.format(Dense_decoder1_npy_reshape.shape))
+
+    # DECODER
+    conv_trans_1 = tf.keras.layers.Conv2DTranspose(16, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
+    batch_norm_trans_1 = tf.keras.layers.BatchNormalization()(conv_trans_1)
+    print('batch_norm_trans_1: {}'.format(batch_norm_trans_1.shape))
+
+    conv_trans_2 = tf.keras.layers.Conv2DTranspose(32, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(batch_norm_trans_1)  # =>(26, 26, 128)
+    batch_norm_trans_2 = tf.keras.layers.BatchNormalization()(conv_trans_2)
+    print('batch_norm_trans_2: {}'.format(batch_norm_trans_2.shape))
+
+    conv_trans_3 = tf.keras.layers.Conv2DTranspose(45, kernel_size=(3, 1),strides=1,activation=tf.nn.relu)(batch_norm_trans_2)  # =>(26, 26, 128)
+    batch_norm_trans_3 = tf.keras.layers.BatchNormalization()(conv_trans_3)
+    print('batch_norm_trans_3: {}'.format(batch_norm_trans_3.shape))
+
+    output00_1 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(2, 1), padding='same',strides=1, activation=tf.nn.relu)(batch_norm_trans_3)  # =>(26, 26, 128)
+    print('output00_1: {}'.format(output00_1.shape))
+    output00_1_1 = tf.keras.layers.Reshape((output00_1.shape[1]*output00_1.shape[2], 1, 1))(output00_1)
+    print('output00_1_1: {}'.format(output00_1_1.shape))
+    output01 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(2, 1), strides=1, activation='sigmoid')(output00_1_1)
+    print('output01: {}'.format(output01.shape))
+    # output layer
+    output02 = tf.squeeze(output01,  axis=2)
+    output = tf.squeeze(output02, axis=2)
+    print('output: {}'.format(output.shape))
+    autoencoder = tf.keras.Model(inputs=x_input_r, outputs=output)
+    # define autoencoder model
+
+    weight_decay = 1e-4
+    opt = tf.keras.optimizers.Adam(lr= lr_r, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+    autoencoder.compile(optimizer = opt,loss='mse')
+
+    # fit the autoencoder model to reconstruct input
+    history = autoencoder.fit(data_train_r_npy, data_train_r_npy, epochs=epoch_r, batch_size=batch_size_r, verbose=2, validation_data=(data_vaild_r_npy,data_vaild_r_npy))
+
+    encoder_rna = tf.keras.Model(inputs=x_input_r, outputs=encode_r)
+    encoder_rna.save( save_path + '/encoder_rna_2.h5')
+    return encoder_rna
+
+def pro_encoder(data_train_p_npy,data_vaild_p_npy,lr_p,epoch_p,batch_size_p,save_path):
+    # lr_p = 1e-4
+    # epoch_p = 100
+    # batch_size_p = 64
+
+    input_shape = data_train_p_npy.shape[1]
+    x_input_p = Input(input_shape)
+    x_input01 = tf.expand_dims(x_input_p, axis=2)
+    x_input01 = tf.expand_dims(x_input01, axis=3)
+    print('x_input01.shape: {}'.format(x_input01.shape))
+
+    # ENCODER
+    conv_1 = tf.keras.layers.Conv2D(filters=45,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(x_input01)
+    batch_norm_1 = tf.keras.layers.BatchNormalization()(conv_1)
+    pooling_1 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_1)
+    print('pooling_1: {}'.format(pooling_1.shape))
+
+    conv_2 = tf.keras.layers.Conv2D(filters=32,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_1)
+    # print(conv_2.shape)
+    batch_norm_2 = tf.keras.layers.BatchNormalization()(conv_2)
+    pooling_2 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=4, padding='valid')(batch_norm_2)
+    print('pooling_2: {}'.format(pooling_2.shape))
+
+    conv_3 = tf.keras.layers.Conv2D(filters=26,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_2)
+    # print(conv_3.shape)
+    batch_norm_3 = tf.keras.layers.BatchNormalization()(conv_3)
+    pooling_3 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_3)
+    print('pooling_3: {}'.format(pooling_3.shape))
+
+    Flatten1 = tf.keras.layers.Flatten()(pooling_3)
+    print('Flatten1: {}'.format(Flatten1.shape))
+
+    Dense_encoder1 = tf.keras.layers.Dense(units=100, activation=tf.nn.relu)(Flatten1)
+    print('Dense_encoder1: {}'.format(Dense_encoder1.shape))
+
+    encode_r = Dense_encoder1
+    print('encode_p: {}'.format(encode_r.shape))
+
+    Dense_decoder1 = tf.keras.layers.Dense(units=Flatten1.shape[1], activation=tf.nn.relu)(encode_r)
+    print('Dense_decoder1: {}'.format(Dense_decoder1.shape))
+    print('Dense_decoder1 dtype: {}'.format(Dense_decoder1.dtype))
+    
+    Dense_decoder1_npy_reshape = tf.keras.layers.Reshape((10, 1, 26))(Dense_decoder1)
+    print('Dense_decoder1_npy_reshape: {}'.format(Dense_decoder1_npy_reshape.shape))
+
+    # DECODER
+    # conv_trans_1 = tf.keras.layers.Conv2DTranspose(16, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
+    # batch_norm_trans_1 = tf.keras.layers.BatchNormalization()(conv_trans_1)
+    # print('batch_norm_trans_1: {}'.format(batch_norm_trans_1.shape))
+
+    conv_trans_2 = tf.keras.layers.Conv2DTranspose(32, kernel_size=(4, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
+    batch_norm_trans_2 = tf.keras.layers.BatchNormalization()(conv_trans_2)
+    print('batch_norm_trans_2: {}'.format(batch_norm_trans_2.shape))
+
+    conv_trans_3 = tf.keras.layers.Conv2DTranspose(45, kernel_size=(3, 1),strides=2,activation=tf.nn.relu)(batch_norm_trans_2)  # =>(26, 26, 128)
+    batch_norm_trans_3 = tf.keras.layers.BatchNormalization()(conv_trans_3)
+    print('batch_norm_trans_3: {}'.format(batch_norm_trans_3.shape))
+
+
+    output00_1 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(3, 1), strides=1, activation='sigmoid')(batch_norm_trans_3)  # =>(26, 26, 128)
+    print('output00_1: {}'.format(output00_1.shape))
+    output00_1_1 = tf.keras.layers.Reshape((output00_1.shape[1]*output00_1.shape[2], 1, 1))(output00_1)
+    print('output00_1_1: {}'.format(output00_1_1.shape))
+    # output01 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(3, 1), strides=1, activation='sigmoid')(output00_1_1)
+    # print('output01: {}'.format(output01.shape))
+    # output layer
+    output02 = tf.squeeze(output00_1_1,  axis=2)
+    output_p = tf.squeeze(output02, axis=2)
+    print('output_p: {}'.format(output_p.shape))
+
+    autoencoder_p = tf.keras.Model(inputs=x_input_p, outputs=output_p)
+    # define autoencoder model
+    weight_decay = 1e-4
+    opt = tf.keras.optimizers.Adam(lr= lr_p, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+    autoencoder_p.compile(optimizer = opt,loss='mse')
+
+    # fit the autoencoder model to reconstruct input
+    history = autoencoder_p.fit(data_train_p_npy, data_train_p_npy, epochs=epoch_p, batch_size=batch_size_p, verbose=2, validation_data=(data_vaild_p_npy,data_vaild_p_npy))
+
+    encoder_pro = tf.keras.Model(inputs=x_input_p, outputs=encode_r)
+    encoder_pro.save( save_path + '/encoder_pro.h5')
+    
+    return encoder_pro
+
+
+def compound_encoder(data_train_r_npy,data_vaild_r_npy,lr_r,epoch_r,batch_size_r,save_path):
+    # lr = 1e-4
+    # epoch = 100
+    # batch_size = 64
+
+    input_shape = data_train_r_npy.shape[1]
+    x_input_r = Input(input_shape)
+    x_input01 = tf.expand_dims(x_input_r, axis=2)
+    x_input01 = tf.expand_dims(x_input01, axis=3)
+    print('x_input: {}'.format(x_input01.shape))
+
+    # ENCODER
+    conv_1 = tf.keras.layers.Conv2D(filters=64,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(x_input01)
+    batch_norm_1 = tf.keras.layers.BatchNormalization()(conv_1)
+    pooling_1 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_1)
+    print('pooling_1: {}'.format(pooling_1.shape))
+
+    conv_2 = tf.keras.layers.Conv2D(filters=48,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_1)
+    # print(conv_2.shape)
+    batch_norm_2 = tf.keras.layers.BatchNormalization()(conv_2)
+    pooling_2 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=4, padding='valid')(batch_norm_2)
+    print('pooling_2: {}'.format(pooling_2.shape))
+
+    conv_3 = tf.keras.layers.Conv2D(filters=32,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_2)
+    # print(conv_3.shape)
+    batch_norm_3 = tf.keras.layers.BatchNormalization()(conv_3)
+    pooling_3 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_3)
+    print('pooling_3: {}'.format(pooling_3.shape))
+
+    conv_4 = tf.keras.layers.Conv2D(filters=16,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_3)
+    # print(conv_3.shape)
+    batch_norm_4 = tf.keras.layers.BatchNormalization()(conv_4)
+    pooling_4 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_4)
+    print('pooling_4: {}'.format(pooling_4.shape))
+
+    conv_5 = tf.keras.layers.Conv2D(filters=8,  kernel_size=(3, 1), padding="valid",  activation=tf.nn.relu)(pooling_4)
+    # print(conv_3.shape)
+    batch_norm_5 = tf.keras.layers.BatchNormalization()(conv_5)
+    pooling_5 = tf.keras.layers.MaxPool2D(pool_size=(2, 1), strides=2, padding='valid')(batch_norm_5)
+    print('pooling_5: {}'.format(pooling_5.shape))
+
+    Flatten1 = tf.keras.layers.Flatten()(pooling_5)
+    print('Flatten1: {}'.format(Flatten1.shape))
+
+    Dense_encoder1 = tf.keras.layers.Dense(units=100, activation=tf.nn.relu)(Flatten1)
+    print('Dense_encoder1: {}'.format(Dense_encoder1.shape))
+
+    encode_r = Dense_encoder1
+    print('encode_r: {}'.format(encode_r.shape))
+
+    Dense_decoder1 = tf.keras.layers.Dense(units=Flatten1.shape[1], activation=tf.nn.relu)(encode_r)
+    print('Dense_decoder1: {}'.format(Dense_decoder1.shape))
+    print('Dense_decoder1 dtype: {}'.format(Dense_decoder1.dtype))
+    
+    Dense_decoder1_npy_reshape = tf.keras.layers.Reshape((34, 1, 8))(Dense_decoder1)
+    print('Dense_decoder1_npy_reshape: {}'.format(Dense_decoder1_npy_reshape.shape))
+
+    # DECODER
+    conv_trans_1 = tf.keras.layers.Conv2DTranspose(16, kernel_size=(5, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
+    batch_norm_trans_1 = tf.keras.layers.BatchNormalization()(conv_trans_1)
+    print('batch_norm_trans_1: {}'.format(batch_norm_trans_1.shape))
+
+    conv_trans_2 = tf.keras.layers.Conv2DTranspose(32, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(batch_norm_trans_1)  # =>(26, 26, 128)
+    batch_norm_trans_2 = tf.keras.layers.BatchNormalization()(conv_trans_2)
+    print('batch_norm_trans_2: {}'.format(batch_norm_trans_2.shape))
+
+    conv_trans_3 = tf.keras.layers.Conv2DTranspose(45, kernel_size=(3, 1),strides=2,activation=tf.nn.relu)(batch_norm_trans_2)  # =>(26, 26, 128)
+    batch_norm_trans_3 = tf.keras.layers.BatchNormalization()(conv_trans_3)
+    print('batch_norm_trans_3: {}'.format(batch_norm_trans_3.shape))
+
+    output00_1 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(4, 1), strides=1, activation=tf.nn.relu)(batch_norm_trans_3)  # =>(26, 26, 128)
+    print('output00_1: {}'.format(output00_1.shape))
+    output00_1_1 = tf.keras.layers.Reshape((output00_1.shape[1]*output00_1.shape[2], 1, 1))(output00_1)
+    print('output00_1_1: {}'.format(output00_1_1.shape))
+    output01 = tf.keras.layers.Conv2DTranspose(1, kernel_size=(5, 1), strides=1, activation='sigmoid')(output00_1_1)
+    print('output01: {}'.format(output01.shape))
+    # output layer
+    output02 = tf.squeeze(output01,  axis=2)
+    output = tf.squeeze(output02, axis=2)
+    print('output: {}'.format(output.shape))
+    autoencoder = tf.keras.Model(inputs=x_input_r, outputs=output)
+    # define autoencoder model
+
+    weight_decay = 1e-4
+    opt = tf.keras.optimizers.Adam(lr= lr_r, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+    autoencoder.compile(optimizer = opt,loss='mse')
+
+    # fit the autoencoder model to reconstruct input
+    history = autoencoder.fit(data_train_r_npy, data_train_r_npy, epochs=epoch_r, batch_size=batch_size_r, verbose=2, validation_data=(data_vaild_r_npy,data_vaild_r_npy))
+
+    encoder_rna = tf.keras.Model(inputs=x_input_r, outputs=encode_r)
+    encoder_rna.save( save_path + '/encoder_compound.h5')
+    return encoder_rna
+
+def split_training_validation_test(classes00, size=[0.75,0.1,0.15], shuffle=True, SEED = 888):
+    """split sampels based on balnace classes"""
+    random.seed(SEED)
+    num_samples = len(classes00)
+
+    classes01 = np.array(classes00)    
+    classes = np.squeeze(classes01)
+
+    classes_unique = np.unique(classes)
+
+    indices = np.arange(num_samples)
+
+    training_indice = []
+    validation_indice = []
+    test_indice = []
+
+    for cl in classes_unique:
+        indices_cl = indices[classes == cl]
+
+        num_samples_cl = len(indices_cl)
+       
+        
+        if shuffle:
+            random.shuffle(indices_cl)  # in-place shuffle
+
+        # module and residual
+        num_samples_training = int(num_samples_cl * size[0])
+        num_samples_validation = int(num_samples_cl * size[1])
+        num_samples_test = int(num_samples_cl * size[2])
+
+        test_indice = test_indice + [test for test in indices_cl[0:num_samples_test]]
+        validation_indice = validation_indice + [valid for valid in indices_cl[num_samples_test:(num_samples_test + num_samples_validation)]]
+        training_indice = training_indice + [train for train in indices_cl[(num_samples_test + num_samples_validation):]]
+
+    random.shuffle(training_indice)
+    random.shuffle(validation_indice)
+    random.shuffle(test_indice)
+
+    print('training_indice length: {},validation_indice length: {},test_indice length: {}, '.format(len(training_indice),len(validation_indice), len(test_indice)))
+    return training_indice, validation_indice, test_indice
+
+
+
+def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
     # make result file path
     resultpath = resultpath + '/classification_result'
     os.makedirs(resultpath, exist_ok= True)
@@ -593,23 +976,169 @@ def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 
         exit()
 
     res_eval = {}
-    for combin_num in tqdm(range(0,len(combination_methods),1)):
-        if type =='RNAonly':
-            combine_X = mknpy_RNAonly(combination_methods[combin_num],datapath)
-        elif type =='RNA-RNA':
-            combine_X = mknpy_RNA_RNA(combination_methods[combin_num],datapath)
-        elif type =='RNA-pro':
-            combine_X = mknpy_RNA_pro(combination_methods[combin_num],datapath)
-        elif type =='RNA-compound':
-            combine_X = mknpy_RNA_compound(combination_methods[combin_num],datapath)
-        print('The {}/{} combination of coding methods is {method}'.format(combin_num+1,len(combination_methods),method = combination_methods[combin_num]))
-        print('The data shape:{}'.format(combine_X.shape))
-        # split the training and test data
-        train_x, valid_x, train_y, valid_y = train_test_split(combine_X, label, test_size=0.2, random_state=42,stratify=label)
-        # normalization data
-        scaler = preprocessing.StandardScaler().fit(train_x)
-        train_x = scaler.transform(train_x)
-        valid_x = scaler.transform(valid_x)
+    combin_num = 0
+    combine_X = mknpy_RNAonly(combination_methods[combin_num],datapath)
+
+    print('The {}/{} combination of coding methods is {method}'.format(combin_num+1,len(combination_methods),method = combination_methods[combin_num]))
+    print('The data shape:{}'.format(combine_X.shape))
+    # split the training and test data
+    train_x, valid_x, train_y, valid_y = train_test_split(combine_X, label, test_size=0.2, random_state=42,stratify=label)
+    # normalization data
+    scaler = preprocessing.StandardScaler().fit(train_x)
+    train_x = scaler.transform(train_x)
+    valid_x = scaler.transform(valid_x)
+
+    # embedded feature extracted by CNN-AE==========================================================
+    # Specify sufficient boosting iterations to reach a minimum
+    batch_size_rs = [32,64,96,128] # 8,16,48,80,16,32,64,96,128
+    lr_rs = [0.0001,0.001,0.01]
+    epoch_rs = [100]
+
+    parameters_all = [[x,y,z] for x in batch_size_rs for y in lr_rs for z in epoch_rs] 
+    # parameters = random.sample(parameters_all, 10)
+    parameters = parameters_all
+
+    for index_emb, parameter_emb in enumerate(parameters):
+        print('Current parameter_emb is {}/{} dropout, learning rate, batchsize: {}'.format(index_emb,len(parameter_emb),parameter_emb))
+        
+        save_path = resultpath + '/Para_' + '_'.join([str(i) for i in parameter_emb])
+        os.makedirs(save_path, exist_ok = True)
+
+        batch_size_r = parameter_emb[0]
+        lr_r = parameter_emb[1]
+        epoch_r = parameter_emb[2]
+    
+        encoder_r = rna_encoder_1(train_x,valid_x,lr_r,epoch_r,batch_size_r,save_path)
+
+        train_x_encode = encoder_r.predict(train_x)
+        valid_x_encode = encoder_r.predict(valid_x)               
+
+        print('train_x_encode.shape: {}'.format(train_x_encode.shape))
+        print('valid_x_encode.shape: {}'.format(valid_x_encode.shape))
+
+        np.save(save_path + '/' + 'train_x_encode.npy', train_x_encode)
+        np.save(save_path + '/' + 'valid_x_encode.npy', valid_x_encode)
+
+        # starting traing       
+        print('The classification model is: {}'.format(modelnm))
+        if modelnm == 'svm':
+            model,best_para = svm_two(train_x_encode, valid_x_encode, train_y, valid_y)
+            group = model.predict(valid_x_encode) # test
+            score = model.predict_proba(valid_x_encode) # get the confidence probability
+            Acc, Sn, Sp, Pre, MCC, AUC = calc_metrics(valid_y,score[:, 1],group)        
+        elif modelnm == 'RF':
+            model,best_para = RF(train_x_encode, valid_x_encode, train_y, valid_y)
+            group = model.predict(valid_x_encode) # test
+            score = model.predict_proba(valid_x_encode) # get the confidence probability
+            Acc, Sn, Sp, Pre, MCC, AUC = calc_metrics(valid_y,score[:, 1],group)
+        elif modelnm == 'xgboost':
+            Acc, Sn, Sp, Pre, MCC, AUC,best_para = xgboost_model(train_x_encode,train_y,valid_x_encode,valid_y)
+        elif modelnm == 'DNN' or modelnm == 'CNN':
+            Acc, Sn, Sp, Pre, MCC, AUC,best_para = train_model(train_x_encode,train_y,valid_x_encode,valid_y,modelnm = modelnm)
+
+        res_eval[index_emb+1] = [modelnm,parameter_emb,best_para, Acc, Sn, Sp, Pre, MCC, AUC]
+    indexs = ['model name','embedding parameters','best parameters','Acc','Sn','Sp','Pre','MCC','AUC']
+    evaluation_result = pd.DataFrame(res_eval,index = indexs).T
+    evaluation_result = evaluation_result.sort_values(by="MCC" , ascending=False)
+    evaluation_result.to_csv(resultpath + '/Evaluation_result.csv')
+    print(evaluation_result)
+
+
+def evaluation_interaction(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
+    # make result file path
+    resultpath = resultpath + '/classification_result'
+    os.makedirs(resultpath, exist_ok= True)
+    # get all combination methods
+    combination_methods = make_comcod(com_num)
+    # get label
+    labeldata = pd.read_csv(label_path)
+    label = np.array(labeldata.iloc[:,2])
+    # check the label classes
+    if len(set(label))==1:
+        print('The sample class is only one, so can not classificate!')
+        exit()
+
+    res_eval = {}
+    combin_num = 0
+
+    if type =='RNA-RNA':
+        combine_X_A, combine_X_B = mknpy_RNA_RNA(combination_methods[combin_num],datapath)
+    elif type =='RNA-pro':
+        combine_X_A, combine_X_B = mknpy_RNA_pro(combination_methods[combin_num],datapath)
+    elif type =='RNA-compound':
+        combine_X_A, combine_X_B = mknpy_RNA_compound(combination_methods[combin_num],datapath)
+    print('The {}/{} combination of coding methods is {method}'.format(combin_num+1,len(combination_methods),method = combination_methods[combin_num]))
+    print('The data A shape:{}, The data B shape:{} '.format(combine_X_A.shape, combine_X_B.shape))
+
+    train_label = labeldata.iloc[:,2].tolist()
+    train_idx, valid_idx, test_idx = split_training_validation_test(train_label, size=[0.8,0.2,0])    
+    
+    train_X_A = combine_X_A[train_idx,:]
+    valid_X_A = combine_X_A[valid_idx,:]
+
+    train_X_B = combine_X_B[train_idx,:]
+    valid_X_B = combine_X_B[valid_idx,:]
+
+    train_y = np.array([int(train_label[i]) for i in train_idx])
+    valid_y = np.array([int(train_label[i]) for i in valid_idx])    
+
+    # normalization
+    scaler_r = MinMaxScaler().fit(train_X_A)
+    train_feature_RNA = scaler_r.transform(train_X_A)
+    test_feature_RNA = scaler_r.transform(valid_X_A)
+
+    scaler_p = MinMaxScaler().fit(train_X_B)
+    train_feature_pro = scaler_p.transform(train_X_B)
+    test_feature_pro = scaler_p.transform(valid_X_B)
+
+    # Specify sufficient boosting iterations to reach a minimum
+    batch_size_rs = [32,64,96,128] # 8,16,48,80,16,32,64,96,128
+    lr_rs = [0.0001,0.001,0.01]
+    epoch_rs = [100]
+
+    parameters_all = [[x,y,z] for x in batch_size_rs for y in lr_rs for z in epoch_rs] 
+    # parameters = random.sample(parameters_all, 10)
+    parameters = parameters_all
+
+    for index_emb, parameter_emb in enumerate(parameters):
+        print('Current parameter_emb is {}/{} dropout, learning rate, batchsize: {}'.format(index_emb,len(parameter_emb),parameter_emb))
+        
+        save_path = resultpath + '/Para_' + '_'.join([str(i) for i in parameter_emb])
+        os.makedirs(save_path, exist_ok = True)
+
+        batch_size_r = parameter_emb[0]
+        lr_r = parameter_emb[1]
+        epoch_r = parameter_emb[2]
+
+        if type =='RNA-RNA':
+            encoder_r = rna_encoder_1(train_feature_RNA,test_feature_RNA,lr_r,epoch_r,batch_size_r,save_path)
+            encoder_p = rna_encoder_2(train_feature_pro,test_feature_pro,lr_r,epoch_r,batch_size_r,save_path)
+        elif type =='RNA-pro':            
+            encoder_r = rna_encoder_1(train_feature_RNA,test_feature_RNA,lr_r,epoch_r,batch_size_r,save_path)
+            encoder_p = pro_encoder(train_feature_pro,test_feature_pro,lr_r,epoch_r,batch_size_r,save_path)
+            
+        elif type =='RNA-compound':            
+            encoder_p = compound_encoder(train_feature_pro,test_feature_pro,lr_r,epoch_r,batch_size_r,save_path)
+            encoder_r = rna_encoder_1(train_feature_RNA,test_feature_RNA,lr_r,epoch_r,batch_size_r,save_path)           
+
+        train_feature_RNA_encode = encoder_r.predict(train_feature_RNA)
+        test_feature_RNA_encode = encoder_r.predict(test_feature_RNA)
+        train_feature_pro_encode = encoder_p.predict(train_feature_pro)
+        test_feature_pro_encode = encoder_p.predict(test_feature_pro)                    
+
+        print('train_feature_RNA_encode.shape: {}'.format(train_feature_RNA_encode.shape))
+        print('test_feature_RNA_encode.shape: {}'.format(test_feature_RNA_encode.shape))
+        print('train_feature_B_encode.shape: {}'.format(train_feature_pro_encode.shape))
+        print('test_feature_B_encode.shape: {}'.format(test_feature_pro_encode.shape))
+
+
+        np.save(save_path + '/' + 'train_feature_RNA_encode.npy', train_feature_RNA_encode)
+        np.save(save_path + '/' + 'test_feature_RNA_encode.npy', test_feature_RNA_encode)
+        np.save(save_path + '/' + 'train_feature_B_encode.npy', train_feature_pro_encode)
+        np.save(save_path + '/' + 'test_feature_B_encode.npy', test_feature_pro_encode)
+
+        train_x = np.concatenate((train_feature_RNA_encode, train_feature_pro_encode), axis = 1)
+        valid_x = np.concatenate((test_feature_RNA_encode, test_feature_pro_encode), axis = 1)
 
         # starting traing       
         print('The classification model is: {}'.format(modelnm))
@@ -628,28 +1157,27 @@ def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 
         elif modelnm == 'DNN' or modelnm == 'CNN':
             Acc, Sn, Sp, Pre, MCC, AUC,best_para = train_model(train_x,train_y,valid_x,valid_y,modelnm = modelnm)
 
-        res_eval[combin_num+1] = [combination_methods[combin_num],get_abbre(combination_methods[combin_num]),best_para, Acc, Sn, Sp, Pre, MCC, AUC]
-    indexs = ['combination methods','abbreviation','best parameters','Acc','Sn','Sp','Pre','MCC','AUC']
+        res_eval[index_emb+1] = [modelnm,parameter_emb,best_para, Acc, Sn, Sp, Pre, MCC, AUC]
+    indexs = ['model name','embedding parameters','best parameters','Acc','Sn','Sp','Pre','MCC','AUC']
     evaluation_result = pd.DataFrame(res_eval,index = indexs).T
     evaluation_result = evaluation_result.sort_values(by="MCC" , ascending=False)
     evaluation_result.to_csv(resultpath + '/Evaluation_result.csv')
     print(evaluation_result)
-    # make plot
-    evaluation_result.iloc[:10,:].plot('abbreviation', 'MCC', kind='barh', legend=False, title ="Evaluation", figsize=(15, 10))
-    plt.xlabel("MCC", fontsize=12)
-    plt.ylabel("Abbreviation", fontsize=12)
-    plt.savefig(resultpath + '/Evaluation_result.png', bbox_inches='tight')
+
 
 
 # ========================================================================================
 
-# datapath = '../output/RNA_only/encoding_features'
-# label_path = '../demo/RNA-only/Homo38_small.csv'
-# resultpath = '../output/RNA_only/classification_result'
+# datapath = '../out/RNA-pro/encoding_features'
+# label_path = '../demo/RNA-Protein/RNA-Protein-Interacting.csv'
+# resultpath = '../out/RNA-pro/classification_result'
 
+# datapath = '../out/RNA-compound/encoding_features'
+# label_path = '../demo/RNA-compound/RNA-small-molecule-Interacting.csv'
+# resultpath = '../out/RNA-compound/classification_result'
 
-# modelnm = 'svm' # 'RF','svm','xgboost','DNN','CNN'
-# com_num = 2  # number of combination methods
-# type = 'RNAonly'  # RNAonly, RNA-RNA, RNA-pro, RNA-compound
-# evaluation_method(datapath,label_path,resultpath,type = type,com_num = com_num,modelnm = modelnm)
-
+# # # modelnm = 'RF' # 'RF','svm','xgboost','DNN','CNN'
+# # # com_num = 16  # number of combination methods
+# # # type = 'RNA-pro'  # RNAonly, RNA-RNA, RNA-pro, RNA-compound
+# # # evaluation_method(datapath,label_path,resultpath,type = type,com_num = com_num,modelnm = modelnm)
+# evaluation_interaction(datapath,label_path,resultpath,type = 'RNA-compound',com_num = 16,modelnm = 'svm')

@@ -1,46 +1,13 @@
-,combination methods,abbreviation,best parameters,Acc,Sn,Sp,Pre,MCC,AUC
-23,"('Global descriptor (1D)', 'Secondary structure (1D)')",GBD+SST,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-25,"('K-mer (1D)', 'Codon related (1D)')",KME+CDR,"[0.1, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-2,"('Open reading frame (1D)', 'Global descriptor (1D)')",ORF+GBD,"[0.1, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-22,"('Global descriptor (1D)', 'Nucleotide related (1D)')",GBD+NTR,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-21,"('Global descriptor (1D)', 'Guanine-cytosine related (1D)')",GBD+GCR,"[0.1, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-20,"('Global descriptor (1D)', 'Pseudo protein related (1D)')",GBD+PPR,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-18,"('Global descriptor (1D)', 'K-mer (1D)')",GBD+KME,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-27,"('K-mer (1D)', 'Guanine-cytosine related (1D)')",KME+GCR,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-29,"('K-mer (1D)', 'Secondary structure (1D)')",KME+SST,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-30,"('K-mer (1D)', 'EIIP based spectrum (1D)')",KME+EBS,"[0.1, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-24,"('Global descriptor (1D)', 'EIIP based spectrum (1D)')",GBD+EBS,"[0.1, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-35,"('Codon related (1D)', 'EIIP based spectrum (1D)')",CDR+EBS,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-40,"('Guanine-cytosine related (1D)', 'Nucleotide related (1D)')",GCR+NTR,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-43,"('Nucleotide related (1D)', 'Secondary structure (1D)')",NTR+SST,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-44,"('Nucleotide related (1D)', 'EIIP based spectrum (1D)')",NTR+EBS,"[0.2, 0.001, 64]",1.0,1.0,1.0,1.0,1.0,1.0
-32,"('Codon related (1D)', 'Guanine-cytosine related (1D)')",CDR+GCR,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-34,"('Codon related (1D)', 'Secondary structure (1D)')",CDR+SST,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.75
-37,"('Pseudo protein related (1D)', 'Nucleotide related (1D)')",PPR+NTR,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.75
-28,"('K-mer (1D)', 'Nucleotide related (1D)')",KME+NTR,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-38,"('Pseudo protein related (1D)', 'Secondary structure (1D)')",PPR+SST,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-39,"('Pseudo protein related (1D)', 'EIIP based spectrum (1D)')",PPR+EBS,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-26,"('K-mer (1D)', 'Pseudo protein related (1D)')",KME+PPR,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-42,"('Guanine-cytosine related (1D)', 'EIIP based spectrum (1D)')",GCR+EBS,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-31,"('Codon related (1D)', 'Pseudo protein related (1D)')",CDR+PPR,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-1,"('Open reading frame (1D)', 'Entropy density of transcript (1D)')",ORF+EDT,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-19,"('Global descriptor (1D)', 'Codon related (1D)')",GBD+CDR,"[0.2, 0.001, 64]",0.75,1.0,0.5,0.6666666666666666,0.5773502691896258,0.5
-10,"('Entropy density of transcript (1D)', 'Global descriptor (1D)')",EDT+GBD,"[0.1, 0.001, 64]",0.75,1.0,0.5,0.6666666666666666,0.5773502691896258,1.0
-3,"('Open reading frame (1D)', 'K-mer (1D)')",ORF+KME,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.75
-4,"('Open reading frame (1D)', 'Codon related (1D)')",ORF+CDR,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.75
-5,"('Open reading frame (1D)', 'Pseudo protein related (1D)')",ORF+PPR,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-6,"('Open reading frame (1D)', 'Guanine-cytosine related (1D)')",ORF+GCR,"[0.1, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.5
-7,"('Open reading frame (1D)', 'Nucleotide related (1D)')",ORF+NTR,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,0.75
-8,"('Open reading frame (1D)', 'Secondary structure (1D)')",ORF+SST,"[0.1, 0.001, 64]",0.75,1.0,0.5,0.6666666666666666,0.5773502691896258,0.5
-9,"('Open reading frame (1D)', 'EIIP based spectrum (1D)')",ORF+EBS,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-45,"('Secondary structure (1D)', 'EIIP based spectrum (1D)')",SST+EBS,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-12,"('Entropy density of transcript (1D)', 'Codon related (1D)')",EDT+CDR,"[0.2, 0.001, 64]",0.75,0.5,1.0,1.0,0.5773502691896258,1.0
-15,"('Entropy density of transcript (1D)', 'Nucleotide related (1D)')",EDT+NTR,"[0.1, 0.001, 64]",0.75,1.0,0.5,0.6666666666666666,0.5773502691896258,1.0
-11,"('Entropy density of transcript (1D)', 'K-mer (1D)')",EDT+KME,"[0.2, 0.001, 64]",0.5,0.0,1.0,0,0,0.25
-33,"('Codon related (1D)', 'Nucleotide related (1D)')",CDR+NTR,"[0.1, 0.001, 64]",0.5,0.0,1.0,0,0,1.0
-13,"('Entropy density of transcript (1D)', 'Pseudo protein related (1D)')",EDT+PPR,"[0.1, 0.001, 64]",0.5,0.5,0.5,0.5,0.0,0.5
-41,"('Guanine-cytosine related (1D)', 'Secondary structure (1D)')",GCR+SST,"[0.2, 0.001, 64]",0.5,0.5,0.5,0.5,0.0,0.75
-14,"('Entropy density of transcript (1D)', 'Guanine-cytosine related (1D)')",EDT+GCR,"[0.2, 0.001, 64]",0.5,0.5,0.5,0.5,0.0,0.25
-16,"('Entropy density of transcript (1D)', 'Secondary structure (1D)')",EDT+SST,"[0.1, 0.001, 64]",0.5,1.0,0.0,0.5,0,0.75
-36,"('Pseudo protein related (1D)', 'Guanine-cytosine related (1D)')",PPR+GCR,"[0.2, 0.001, 64]",0.5,1.0,0.0,0.5,0,1.0
-17,"('Entropy density of transcript (1D)', 'EIIP based spectrum (1D)')",EDT+EBS,"[0.1, 0.001, 64]",0.25,0.5,0.0,0.3333333333333333,-0.5773502691896258,0.5
+,embedding parameters,best parameters,Acc,Sn,Sp,Pre,MCC,AUC
+1,"[32, 0.0001, 100]","[100, 6, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+2,"[32, 0.001, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+3,"[32, 0.01, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+4,"[64, 0.0001, 100]","[100, 6, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+5,"[64, 0.001, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+6,"[64, 0.01, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+7,"[96, 0.0001, 100]","[100, 6, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+8,"[96, 0.001, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+9,"[96, 0.01, 100]","[100, 6, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+10,"[128, 0.0001, 100]","[100, 6, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+11,"[128, 0.001, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5
+12,"[128, 0.01, 100]","[100, 3, 0.05]",0.5,1.0,0.0,0.5,0,0.5

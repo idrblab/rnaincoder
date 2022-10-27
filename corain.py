@@ -19,9 +19,11 @@ def corain_process(type,Afastapath,Interfilepath,Resultpath,dimension,savetype,n
     elif type =='RNA-compound':
         RNAcoding_01.RNA_compound_coding(Afastapath,Bfastapath,Interfilepath,resultpath,dimension = dimension, savetype = savetype,n_select =n_select)
     # evaluation part
-    
     datapath = Resultpath + '/' + type + '/' +  'encoding_features'
-    model.evaluation_method(datapath,Interfilepath,resultpath,type = type,com_num = com_num,modelnm = modelnm)
+    if type =='RNAonly':
+        model.evaluation_method(datapath,Interfilepath,resultpath,type = type,com_num = com_num,modelnm = modelnm)
+    else:
+        model.evaluation_interaction(datapath,Interfilepath,resultpath,type = type,com_num = com_num,modelnm = modelnm)
 
 def main():
     # parameters ===========================================

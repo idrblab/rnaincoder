@@ -16,7 +16,6 @@ RNAincoder is constructed to encode RNA of **(1) providing various encoding stra
 - [Question && issue](#question--issue)
 
 # Workflow
-![Flow](fig/RNAincoder-Flow.png)
 RNAincoder encoding and combined feature evaluation are divided into two parts. Step 1: Encode the uploaded RNA and RNA-interacting molecules (RNA, protein, small molecule compounds) to obtain one-dimensional or two-dimensional coding features; Step 2: If one-dimensional coding features are performed, and the sample type If it is greater than or equal to 2, then the combined feature evaluation process can be performed. 
 
 # Requirements and installment
@@ -84,16 +83,10 @@ The paramter "n_select" is corresponsed with parameter "dimension" as following 
 |7       |Pseudo protein related       |-                                           |
 |8       |Nucleotide related           |-                                           |
 |9       |EIIP based spectrum          |-                                           |
-|10      |Lipoaffinity index           |-                                           |
-|11      |Partition coefficient        |-                                           |
-|12      |Molar refractivity           |-                                           |
-|13      |Hydrogen bond related        |-                                           |
-|14      |Secondary structure          |-                                           |
-|15      |Topological indices          |-                                           |
-|16      |Molecular fingerprint        |-                                           |
-|17      |3D Structure-based           |-                                           |
+|10      |Secondary structure          |-                                           |
 
-![1D](fig/rnaincoder-1D.png)
+
+
 
 # Study demo
 ## 1. RNA-only

@@ -64,7 +64,7 @@ optional arguments:
                         encoding features.
   -c COM_NUM, --com_num COM_NUM
                         Number of combination features: 1-10. Default is all 
-                        encoding features combinations (1023).
+                        encoding features combinations.
   -m MODELNM, --modelnm MODELNM
                         Classification model of evaluation feature 
                         combination:'RF','svm','xgboost','DNN','CNN'.

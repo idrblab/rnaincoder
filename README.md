@@ -1,10 +1,10 @@
-[![AUR](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://gitee.com/yunxia-wang/corain/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/idrblab/corain.svg?style=social&label=Stars)](https://github.com/idrblab/corain/)
+[![AUR](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://gitee.com/yunxia-wang/rnaincoder/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/idrblab/rnaincoder.svg?style=social&label=Stars)](https://github.com/idrblab/rnaincoder/)
 [![Python 3.x](https://img.shields.io/badge/Python-3.X-green.svg)](https://www.python.org/)
-![GitHub codesize](https://img.shields.io/github/languages/code-size/idrblab/corain)
+![GitHub codesize](https://img.shields.io/github/languages/code-size/idrblab/rnaincoder)
 [![PMID](https://img.shields.io/badge/PMID-NOT%20available-yellow.svg)](https://pubmed.ncbi.nlm.nih.gov/)
-[![CORAIN](fig/CORAIN-Title.png)](http://idrblab.org/corain/)
-CORAIN is constructed to encode RNA of **(1) providing various coding strategies for RNA from three perspectives, sequence, structure and physical chemical properties, (2) offering the combined coding strategies of RNA-RNA interaction, RNA-protein interaction and RNA-drug interaction, (3) covering the encoding methods not only for conventional machine learning but also the deep learning**. Therefore, users can get the encoding results of RNA or the encoding results of RNA interaction pairs from CORAIN, which can be directly used for artificial intelligence.
+[![RNAincoder](fig/rnaincoder-Title.png)](http://idrblab.org/rnaincoder/)
+RNAincoder is constructed to encode RNA of **(1) providing various encoding strategies for RNA from three perspectives, sequence, structure and physical chemical properties, (2) offering the combined coding strategies of RNA-RNA interaction, RNA-protein interaction and RNA-drug interaction, (3) covering the encoding methods not only for conventional machine learning but also the deep learning**. Therefore, users can get the encoding results of RNA or the encoding results of RNA interaction pairs from RNAincoder, which can be directly used for artificial intelligence.
 
 # Contents
 - [Contents](#contents)
@@ -19,26 +19,26 @@ CORAIN is constructed to encode RNA of **(1) providing various coding strategies
 - [Question && issue](#question--issue)
 
 # Workflow
-![Flow](fig/CORAIN-Flow.png)
-CORAIN coding and combined feature evaluation are divided into two parts. Step 1: Encode the uploaded RNA and RNA-interacting molecules (RNA, protein, small molecule compounds) to obtain one-dimensional or two-dimensional coding features; Step 2: If one-dimensional coding features are performed, and the sample type If it is greater than or equal to 2, then the combined feature evaluation process can be performed. 
+![Flow](fig/RNAincoder-Flow.png)
+RNAincoder encoding and combined feature evaluation are divided into two parts. Step 1: Encode the uploaded RNA and RNA-interacting molecules (RNA, protein, small molecule compounds) to obtain one-dimensional or two-dimensional coding features; Step 2: If one-dimensional coding features are performed, and the sample type If it is greater than or equal to 2, then the combined feature evaluation process can be performed. 
 
 # Requirements and installment
 This software is developed with Python 3.X, Python 3.X is required as runtime environment. we recommemd user to install [anaconda3](https://www.anaconda.com/) which is well-known as a scientific Python.
 
 ```shell
-git clone https://github.com/idrblab/corain
-cd corain
+git clone https://github.com/idrblab/rnaincoder
+cd rnaincoder
 # virtual environment are recommended
-conda create -n corain python=3.8
+conda create -n rnaincoder python=3.8
 pip install -r requirements.txt
 ```
 # Basic usage
-Users can use corain to **(1) encode RNA** and **(2) evaluate features**.
+Users can use RNAincoder to **(1) encode RNA** and **(2) evaluate features**.
 ```shell
-python corain.py --help
+python rnaincoder.py --help
 ```
 ```
-usage: corain.py [-h] [-t TYPE] [-a AFASTAPATH] [-b BFASTAPATH] 
+usage: rnaincoder.py [-h] [-t TYPE] [-a AFASTAPATH] [-b BFASTAPATH] 
 [-l INTERFILEPATH] [-o RESULTPATH] [-d DIMENSION] [-s SAVETYPE] 
 [-n N_SELECT] [-c COM_NUM] [-m MODELNM]
 
@@ -96,13 +96,13 @@ The paramter "n_select" is corresponsed with parameter "dimension" as following 
 |16      |Molecular fingerprint        |-                                           |
 |17      |3D Structure-based           |-                                           |
 
-![1D](fig/CORAIN-1D.png)
+![1D](fig/rnaincoder-1D.png)
 
 # Study demo
 ## 1. RNA-only
 Users can run RNA-only tasks like following shell script.
 ```shell
-python corain.py -t RNAonly \
+python rnaincoder.py -t RNAonly \
     -a ./demo/RNA-only/RNA.fasta \
     -l ./demo/RNA-only/RNA_label.csv \
     -o ./out \
@@ -115,7 +115,7 @@ python corain.py -t RNAonly \
 
 ## 2. RNA-RNA interaction
 ```shell
-python corain.py -t RNA-RNA \
+python rnaincoder.py -t RNA-RNA \
     -a ./demo/RNA-RNA/SampleData-lncRNA-A.fasta \
     -b ./demo/RNA-RNA/SampleData-miRNA-B.fasta \
     -l ./demo/RNA-RNA/RNA-RNA-Interacting.csv \
@@ -124,7 +124,7 @@ python corain.py -t RNA-RNA \
 
 ## 3. RNA-protein interaction
 ```shell
-python corain.py -t RNA-pro \
+python rnaincoder.py -t RNA-pro \
     -a ./demo/RNA-pro/SampleData-RNA-A.fasta \
     -b ./demo/RNA-pro/SampleData-Protein-B.fasta \
     -l ./demo/RNA-pro/RNA-Protein-Interacting.csv \
@@ -133,7 +133,7 @@ python corain.py -t RNA-pro \
 
 ## 4. RNA-compound interaction
 ```shell
-python corain.py -t RNA-compound \
+python rnaincoder.py -t RNA-compound \
      -a ./demo/RNA-compound/SampleData-RNA-A.fasta \
      -b ./demo/RNA-compound/Small-Moleculer.smi \
      -l ./demo/RNA-compound /RNA-small-molecule-Interacting.csv \

@@ -1,0 +1,1 @@
+Because the file in this folder is too large, please download the compressed file from http://idrblab.org/rnaincoder/download/methods.zip and decompress it in this folder.

@@ -4,7 +4,7 @@ from utility import RNAcoding_01,model
 import argparse as agp
 
 
-def corain_process(type,Afastapath,Interfilepath,Resultpath,dimension,savetype,n_select,com_num,modelnm,Bfastapath=None):
+def rnaincoder_process(type,Afastapath,Interfilepath,Resultpath,dimension,savetype,n_select,com_num,modelnm,Bfastapath=None):
     # calcuation ===========================================
     resultpath = Resultpath + '/' + type
     # encoding part
@@ -55,7 +55,6 @@ def main():
     # Bfastapath = './demo/RNA-SamllMoleculer/Small-Moleculer.smi'
     # Interfilepath = './demo/RNA-SamllMoleculer/RNA-small-molecule-Interacting.csv'
 
-    # corain_process(type,Afastapath,Interfilepath,Resultpath,dimension,savetype,n_select,com_num,modelnm,Bfastapath = Bfastapath)
     # 外部输入参数计算----------------------------
     parser = agp.ArgumentParser()
     parser.add_argument('-t','--type',help="The encoding file type: RNAonly, RNA-RNA, RNA-pro, RNA-compound. It is the coding task of a single RNA fasta file, or RNA interaction task.")
@@ -69,7 +68,7 @@ def main():
     parser.add_argument('-c','--com_num',  type = int,default = None,help="Number of combination features: 1-10. Default is all encoding features combinations (1023).")
     parser.add_argument('-m','--modelnm', type = str,default = 'RF',help="Classification model of evaluation feature combination:'RF','svm','xgboost','DNN','CNN'.")
     args = parser.parse_args()
-    corain_process(args.type,args.Afastapath,args.Interfilepath,args.Resultpath,args.dimension,args.savetype,args.n_select,args.com_num,args.modelnm,args.Bfastapath)
+    rnaincoder_process(args.type,args.Afastapath,args.Interfilepath,args.Resultpath,args.dimension,args.savetype,args.n_select,args.com_num,args.modelnm,args.Bfastapath)
 
 if __name__ == '__main__':
     main()

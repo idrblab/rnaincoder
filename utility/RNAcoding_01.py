@@ -63,10 +63,6 @@ def press_oneProtein(methodsAs, Afilepath):
         Aresult = round(Aresult.iloc[:, :], 6)
         for i in range(1, len(methodsAs)):
             result_n = proteinMeth.switch_prometh(proteinMeth.dictMe[methodsAs[i]], Afilepath)
-            # print(result_n)
-            # result_n.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/result_n.csv')
-            # print(Aresult)
-            # Aresult.to_csv('/public/home/wangyx/LncRNA/smallRNA/corain_standlone/output/Aresult.csv')
             Aresult = pd.concat([Aresult, result_n], axis=1, join='inner')
             Aresult = round(Aresult.iloc[:, :], 6)
     return Aresult

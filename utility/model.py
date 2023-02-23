@@ -1,15 +1,33 @@
 #!/usr/bin/env Python
 # coding=utf-8
 
+from argparse import ArgumentParser
 from collections import Counter
+from functools import reduce
+from mrmr import mrmr_classif
+from sklearn import metrics
 from sklearn import metrics,preprocessing
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import auc as calculate_auc
+from sklearn.metrics import f1_score
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import roc_auc_score, precision_recall_curve
 from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import train_test_split, PredefinedSplit
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
+from tensorflow.keras import Input
+from tensorflow.keras.layers import Dense, Dropout,BatchNormalization,concatenate,Conv1D,Activation,MaxPooling1D,Flatten
+from tensorflow.keras.models import Sequential,Model
+from tensorflow.keras.utils import to_categorical
 from tqdm import tqdm
+tqdm.pandas(ascii=True)
+
+import glob
 import itertools
 import math
 import matplotlib.pyplot as plt
@@ -20,33 +38,8 @@ import random
 import tensorflow as tf
 import time
 import xgboost as xgb
-tqdm.pandas(ascii=True)
-import os
-from argparse import ArgumentParser
-from functools import reduce
-import pandas as pd
-
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras import Input
-from tensorflow.keras.utils import to_categorical
-
-import glob
-from sklearn.preprocessing import MinMaxScaler
 
 def make_comcod(com_n = None):
-    # make the combination list of coding methods
-    # methods_1Ds  = ['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']
-
-    # if com_n:
-    #     combination_methods = list(itertools.combinations(methods_1Ds, com_n))
-    # else:
-    #     for num in range(len(methods_1Ds)):
-    #         com_temp = list(itertools.combinations(methods_1Ds, num+1))
-    #         if num == 0:
-    #             combination_methods = com_temp
-    #         else:
-    #             combination_methods = combination_methods + com_temp
     combination_methods =  [['Open reading frame (1D)', 'Entropy density of transcript (1D)', 'Global descriptor (1D)', 'K-mer (1D)', 'Codon related (1D)', 'Pseudo protein related (1D)', 'Guanine-cytosine related (1D)', 'Nucleotide related (1D)', 'Secondary structure (1D)', 'EIIP based spectrum (1D)','Solubility lipoaffinity (1D)','Partition coefficient (1D)','Polarizability refractivity (1D)','Hydrogen bond related (1D)','Topological indice (1D)','Molecular fingerprint (1D)']]
 
     return combination_methods
@@ -237,14 +230,9 @@ def xgboost_model(traindata,trainlabel,X_test,y_test):
     return Acc, Sn, Sp, Pre, MCC, AUC,best_para
 
 
-#评估模型的分类效果
+#evaluation the performence
 def calc_metrics(y_label, y_proba,y_predict):
-    # print('y_label')
-    # print(y_label)
-    # print('y_proba')
-    # print(y_proba)
-    # print('y_predict')
-    # print(y_predict)
+
     con_matrix = metrics.confusion_matrix(y_label, y_predict)
     # print(con_matrix)
     TN = con_matrix[0][0]
@@ -270,31 +258,11 @@ class DNNModel(tf.keras.models.Model):
         super(DNNModel, self).__init__()
 
         seed = 1234
-        # fc_layers = 
-        # for fc_layer in fc_layers:
-        #     model_t = Dense(units=fc_layer,#, input_dim=input_dim,
-        #                     **params_dic)(model_t)
-        #     model_t = BatchNormalization()(model_t)
-        #     model_t = Activation(activation)(model_t)
-        #     # model_t = Dropout(dropout)(model_t)
-        #     input_dim = fc_layer
 
         self.d1 = tf.keras.layers.Dense(128, activation='relu')
         # self.normal1 = tf.keras.layers.BatchNormalization()
         self.drop1 = tf.keras.layers.Dropout(dropout, seed = seed)
         self.d2 = tf.keras.layers.Dense(112, activation='relu')
-        # self.drop2 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d3 = tf.keras.layers.Dense(96, activation='relu')
-        # self.drop3 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d4 = tf.keras.layers.Dense(80, activation='relu')
-        # self.drop4 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d5 = tf.keras.layers.Dense(64, activation='relu')
-        # self.drop5 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d6 = tf.keras.layers.Dense(48, activation='relu')
-        # self.drop6 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d7 = tf.keras.layers.Dense(32, activation='relu')
-        # self.drop7 = tf.keras.layers.Dropout(dropout, seed = seed)
-        # self.d8 = tf.keras.layers.Dense(16, activation='relu')
         self.drop8 = tf.keras.layers.Dropout(dropout, seed = seed)
         self.d9 = tf.keras.layers.Dense(classes, activation='softmax')
 
@@ -305,18 +273,6 @@ class DNNModel(tf.keras.models.Model):
         x1 = self.d1(inputs)
         x1 = self.drop1(x1,training = training)
         x1 = self.d2(x1)
-        # x1 = self.drop2(x1,training = training)
-        # x1 = self.d3(x1)
-        # x1 = self.drop3(x1,training = training)
-        # x1 = self.d4(x1)
-        # x1 = self.drop4(x1,training = training)
-        # x1 = self.d5(x1)
-        # x1 = self.drop5(x1,training = training)
-        # x1 = self.d6(x1)
-        # x1 = self.drop6(x1,training = training)
-        # x1 = self.d7(x1)
-        # x1 = self.drop7(x1,training = training)
-        # x1 = self.d8(x1)
         x2 = self.drop8(x1,training = training)
         
         out = self.d9(x2)
@@ -520,18 +476,9 @@ def train_model(X_train,y_train,X_test,y_test,modelnm = 'DNN'):
             score_all = np.delete(score_all, 0, 0)
             score_trains = np.delete(score_trains, 0, 0)
 
-            # print('labels_train.shape:{}'.format(labels_train.shape))
-            # print('score_trains.shape:{}'.format(score_trains.shape))
-            # print('group_train.shape:{}'.format(group_train.shape))
-
             Acc_train, Sn_train, Sp_train, Pre_train, MCC_train, AUC_train = calc_metrics(labels_train,score_trains[:,1],group_train)
 
             MCC_v = metrics.matthews_corrcoef(labels_all, group_all)
-            # accuracy = metrics.accuracy_score(labels_all, group_all)
-            # classesnms = [str(i) for i in range(0, classes)]
-            # report = metrics.classification_report(labels_all, group_all, target_names=classesnms)
-            # print(X_test.shape)
-            # Modeal Evaluation on testing dataset
             score, feature_out = model(X_test, training=False)
             # score = model.predict(X_test, batch_size=32, verbose=1)
             group = np.argmax(score.numpy(), axis=1)
@@ -781,11 +728,6 @@ def pro_encoder(data_train_p_npy,data_vaild_p_npy,lr_p,epoch_p,batch_size_p,save
     Dense_decoder1_npy_reshape = tf.keras.layers.Reshape((10, 1, 26))(Dense_decoder1)
     print('Dense_decoder1_npy_reshape: {}'.format(Dense_decoder1_npy_reshape.shape))
 
-    # DECODER
-    # conv_trans_1 = tf.keras.layers.Conv2DTranspose(16, kernel_size=(3, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
-    # batch_norm_trans_1 = tf.keras.layers.BatchNormalization()(conv_trans_1)
-    # print('batch_norm_trans_1: {}'.format(batch_norm_trans_1.shape))
-
     conv_trans_2 = tf.keras.layers.Conv2DTranspose(32, kernel_size=(4, 1), strides=2, activation=tf.nn.relu)(Dense_decoder1_npy_reshape)  # =>(26, 26, 128)
     batch_norm_trans_2 = tf.keras.layers.BatchNormalization()(conv_trans_2)
     print('batch_norm_trans_2: {}'.format(batch_norm_trans_2.shape))
@@ -915,6 +857,273 @@ def compound_encoder(data_train_r_npy,data_vaild_r_npy,lr_r,epoch_r,batch_size_r
     encoder_rna.save( save_path + '/encoder_compound.h5')
     return encoder_rna
 
+def train_auto_encoder(X_train, layers, lr_r, drop_rate,batch_size=100, nb_epoch=100, activation='sigmoid'):
+    trained_encoders = []
+    trained_decoders = []
+    X_train_tmp = np.copy(X_train)
+    # X_test_tmp = np.copy(X_test)
+  
+
+    for n_in, n_out in zip(layers[:-1], layers[1:]):
+        print('Pre-training the layer: Input {} -> Output {}'.format(n_in, n_out))
+        ae = Sequential(
+            [Dense(n_out, input_dim=X_train_tmp.shape[1], activation=activation, ),
+             Dense(n_in, activation=activation),
+             Dropout(drop_rate)]
+        )
+
+        weight_decay = 1e-4
+        opt = tf.keras.optimizers.Adam(lr= lr_r, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+
+        ae.compile(loss='mean_squared_error', optimizer=opt)
+        ae.fit(X_train_tmp, X_train_tmp, batch_size=batch_size, epochs=nb_epoch, verbose=0, shuffle=True)
+        # store trained encoder
+        trained_encoders.append(ae.layers[0])
+        trained_decoders.append(ae.layers[1])
+        # update training data
+        encoder = Sequential([ae.layers[0]])
+        # encoder.evaluate(X_train_tmp, X_train_tmp, batch_size=batch_size)
+        X_train_tmp = encoder.predict(X_train_tmp)
+        # X_test_tmp = encoder.predict(X_test_tmp)
+    
+    return trained_encoders
+
+def conv_block(x, growth_rate):
+    x1 = Conv1D(growth_rate, 3, padding='same')(x)
+    x1 = BatchNormalization()(x1)
+    x1 = Activation('relu')(x1)
+    x = concatenate(([x, x1]), axis=-1)
+    return x
+
+def dense_block(x, blocks, size):
+    if blocks == 0:
+        x = x
+    elif blocks > 0:
+        for i in range(blocks):
+            x = conv_block(x, size)
+    return x
+
+def conjoint_sae(encoders_rna, encoders_protein, rna_coding_length, pro_coding_length, drop_rate):
+
+    Blocks = 3
+    Block_size = 18
+    Filter_num = 24
+    Kernel_sizes = 6
+
+    # NN for RNA feature analysis
+    xr_in_conjoint = Input(shape=(rna_coding_length,))
+    xr_encoded = encoders_rna[0](xr_in_conjoint)
+    xr_encoded = Dropout(drop_rate)(xr_encoded)
+    xr_encoded = encoders_rna[1](xr_encoded)
+    xr_encoded = Dropout(drop_rate)(xr_encoded)
+    xr_encoded = encoders_rna[2](xr_encoded)
+    xr_encoder = Dropout(drop_rate)(xr_encoded)
+    xr_encoder = BatchNormalization()(xr_encoder)
+    # xr_encoder = PReLU()(xr_encoder)
+    xr_encoder = Dropout(drop_rate)(xr_encoder)
+
+    # NN for protein feature analysis
+    xp_in_conjoint = Input(shape=(pro_coding_length,))
+    xp_encoded = encoders_protein[0](xp_in_conjoint)
+    xp_encoded = Dropout(drop_rate)(xp_encoded)
+    xp_encoded = encoders_protein[1](xp_encoded)
+    xp_encoded = Dropout(drop_rate)(xp_encoded)
+    xp_encoder = encoders_protein[2](xp_encoded)
+    xp_encoder = Dropout(drop_rate)(xp_encoder)
+    xp_encoder = BatchNormalization()(xp_encoder)
+    # xp_encoder = PReLU()(xp_encoder)
+    xp_encoder = Dropout(drop_rate)(xp_encoder)
+
+    x_out_conjoint_combine = concatenate([xp_encoder, xr_encoder], name="concatenate001")
+    print('x_out_conjoint_combine: {}'.format(x_out_conjoint_combine.shape))
+    x_input01 = tf.expand_dims(x_out_conjoint_combine, axis=2)
+    # x_input01 = tf.expand_dims(x_input01, axis=3)
+    print('x_input01: {}'.format(x_input01.shape))
+
+    seq_in_conjoint = Conv1D(filters=Filter_num + Blocks * Block_size, kernel_size=1)(x_input01)
+    seq_in_conjoint = BatchNormalization()(seq_in_conjoint)
+    seq_in_conjoint = Activation('relu')(seq_in_conjoint)
+    print('seq_in_conjoint: {}'.format(seq_in_conjoint.shape))
+
+    seq_cnn = Conv1D(filters=Filter_num, kernel_size=Kernel_sizes, padding='same')(seq_in_conjoint)
+    seq_cnn = BatchNormalization()(seq_cnn)
+    seq_cnn = Activation('relu')(seq_cnn)
+    print('seq_cnn: {}'.format(seq_cnn.shape))
+
+    seq_cnn = MaxPooling1D(pool_size=Kernel_sizes)(seq_cnn)
+    seq_cnn = dense_block(seq_cnn, Blocks, Block_size)
+    seq_cnn = BatchNormalization()(seq_cnn)
+
+    print('seq_cnn.shape:{}'.format(seq_cnn.shape))
+    x_out_conjoint = Flatten()(seq_cnn)
+    print('x_out_conjoint.shape:{}'.format(x_out_conjoint.shape))
+
+    x_out_conjoint = Dense(192, activation='relu', use_bias=False)(
+        x_out_conjoint)
+    x_out_conjoint = Dropout(drop_rate)(x_out_conjoint)
+    x_out_conjoint = Dense(64, activation='relu', use_bias=False)(
+        x_out_conjoint)
+    x_out_conjoint = Dropout(drop_rate)(x_out_conjoint)
+    y_conjoint = Dense(2, activation='softmax')(x_out_conjoint)
+
+    model_conjoint = Model(inputs=[xr_in_conjoint, xp_in_conjoint], outputs=y_conjoint)
+
+    return model_conjoint,x_out_conjoint_combine
+
+class CLA_EarlyStoppingAndPerformance(tf.keras.callbacks.Callback):
+
+    def __init__(self, train_data, valid_data, MASK = -1, patience=5, criteria = 'val_loss', metric = 'ROC', last_avf = None, verbose = 0):
+        super(CLA_EarlyStoppingAndPerformance, self).__init__()
+        
+        sp = ['val_loss', 'val_auc']
+        assert criteria in sp, 'not support %s ! only %s' % (criteria, sp)
+        self.x, self.y  = train_data
+        self.x_val, self.y_val = valid_data
+        self.last_avf = last_avf
+        
+        self.history = {'loss':[],
+                        'val_loss':[],
+                        'auc':[],
+                        'val_auc':[],
+                        
+                        'epoch':[]}
+        self.MASK = MASK
+        self.patience = patience
+        # best_weights to store the weights at which the minimum loss occurs.
+        self.best_weights = None
+        self.criteria = criteria
+        self.metric = metric
+        self.best_epoch = 0
+        self.verbose = verbose
+        
+    def sigmoid(self, x):
+        s = 1/(1+np.exp(-x))
+        return s
+
+    
+    def roc_auc(self, y_true, y_pred):
+        if self.last_avf == None:
+            y_pred_logits = self.sigmoid(y_pred)
+        else:
+            y_pred_logits = y_pred
+            
+        N_classes = y_pred_logits.shape[1]
+
+        aucs = []
+        for i in range(N_classes):
+            y_pred_one_class = y_pred_logits[:,i]
+            y_true_one_class = y_true[:, i]
+            mask = ~(y_true_one_class == self.MASK)
+            try:
+                if self.metric == 'ROC':
+                    auc = roc_auc_score(y_true_one_class[mask], y_pred_one_class[mask]) #ROC_AUC
+                elif self.metric == 'PRC': 
+                    auc = prc_auc_score(y_true_one_class[mask], y_pred_one_class[mask]) #PRC_AUC
+                elif self.metric == 'ACC':
+                    auc = accuracy_score(y_true_one_class[mask], np.round(y_pred_one_class[mask])) #ACC
+            except:
+                auc = np.nan
+            aucs.append(auc)
+        return aucs  
+    
+        
+        
+    def on_train_begin(self, logs=None):
+        # The number of epoch it has waited when loss is no longer minimum.
+        self.wait = 0
+        # The epoch the training stops at.
+        self.stopped_epoch = 0
+        # Initialize the best as infinity.
+        if self.criteria == 'val_loss':
+            self.best = np.Inf  
+        else:
+            self.best = -np.Inf
+               
+    def on_epoch_end(self, epoch, logs={}):
+        
+        y_pred = self.model.predict(self.x)
+        roc_list = self.roc_auc(self.y, y_pred)
+        roc_mean = np.nanmean(roc_list)
+        
+        y_pred_val = self.model.predict(self.x_val)
+        roc_val_list = self.roc_auc(self.y_val, y_pred_val)        
+        roc_val_mean = np.nanmean(roc_val_list)
+        
+        self.history['loss'].append(logs.get('loss'))
+        self.history['val_loss'].append(logs.get('val_loss'))
+        self.history['auc'].append(roc_mean)
+        self.history['val_auc'].append(roc_val_mean)
+        self.history['epoch'].append(epoch)
+        
+        
+        eph = str(epoch+1).zfill(4)        
+        loss = '{0:.4f}'.format((logs.get('loss')))
+        val_loss = '{0:.4f}'.format((logs.get('val_loss')))
+        auc = '{0:.4f}'.format(roc_mean)
+        auc_val = '{0:.4f}'.format(roc_val_mean)    
+        
+        if self.verbose:
+            if self.metric == 'ACC':
+                print('\repoch: %s, loss: %s - val_loss: %s; acc: %s - val_acc: %s' % (eph,
+                                                                                   loss, 
+                                                                                   val_loss, 
+                                                                                   auc,
+                                                                                   auc_val), end=100*' '+'\n')
+
+            else:
+                print('\repoch: %s, loss: %s - val_loss: %s; auc: %s - val_auc: %s' % (eph,
+                                                                                   loss, 
+                                                                                   val_loss, 
+                                                                                   auc,
+                                                                                   auc_val), end=100*' '+'\n')
+
+
+        if self.criteria == 'val_loss':
+            current = logs.get(self.criteria)
+            if current <= self.best:
+                self.best = current
+                self.wait = 0
+                # Record the best weights if current results is better (less).
+                self.best_weights = self.model.get_weights()
+                self.best_epoch = epoch
+
+            else:
+                self.wait += 1
+                if self.wait >= self.patience:
+                    self.stopped_epoch = epoch
+                    self.model.stop_training = True
+                    print('\nRestoring model weights from the end of the best epoch.')
+                    self.model.set_weights(self.best_weights)    
+                    
+        else:
+            current = roc_val_mean
+            if current >= self.best:
+                self.best = current
+                self.wait = 0
+                # Record the best weights if current results is better (less).
+                self.best_weights = self.model.get_weights()
+                self.best_epoch = epoch
+
+            else:
+                self.wait += 1
+                if self.wait >= self.patience:
+                    self.stopped_epoch = epoch
+                    self.model.stop_training = True
+                    print('\nRestoring model weights from the end of the best epoch.')
+                    self.model.set_weights(self.best_weights)              
+    
+    def on_train_end(self, logs=None):
+        self.model.set_weights(self.best_weights)
+        if self.stopped_epoch > 0:
+            print('\nEpoch %05d: early stopping' % (self.stopped_epoch + 1))
+
+        
+    def evaluate(self, testX, testY):
+        
+        y_pred = self.model.predict(testX)
+        roc_list = self.roc_auc(testY, y_pred)
+        return roc_list 
+
 def split_training_validation_test(classes00, size=[0.75,0.1,0.15], shuffle=True, SEED = 888):
     """split sampels based on balnace classes"""
     random.seed(SEED)
@@ -956,7 +1165,8 @@ def split_training_validation_test(classes00, size=[0.75,0.1,0.15], shuffle=True
     print('training_indice length: {},validation_indice length: {},test_indice length: {}, '.format(len(training_indice),len(validation_indice), len(test_indice)))
     return training_indice, validation_indice, test_indice
 
-
+# =========================================================================================================
+# start the classification
 
 def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
     # make result file path
@@ -1043,8 +1253,8 @@ def evaluation_method(datapath,label_path,resultpath,type = 'RNAonly',com_num = 
     evaluation_result.to_csv(resultpath + '/Evaluation_result.csv')
     print(evaluation_result)
 
-
-def evaluation_interaction(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
+# 
+def evaluation_interaction_cnn_ae(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
     # make result file path
     resultpath = resultpath + '/classification_result'
     os.makedirs(resultpath, exist_ok= True)
@@ -1164,7 +1374,172 @@ def evaluation_interaction(datapath,label_path,resultpath,type = 'RNAonly',com_n
     evaluation_result.to_csv(resultpath + '/Evaluation_result.csv')
     print(evaluation_result)
 
+def evaluation_interaction(datapath,label_path,resultpath,type = 'RNAonly',com_num = 16,modelnm = 'RF'):
+    # make result file path
+    resultpath = resultpath + '/classification_result'
+    os.makedirs(resultpath, exist_ok= True)
+    # get all combination methods
+    combination_methods = make_comcod(com_num)
+    # get label
+    labeldata = pd.read_csv(label_path)
+    label = np.array(labeldata.iloc[:,2])
+    # check the label classes
+    if len(set(label))==1:
+        print('The sample class is only one, so can not classificate!')
+        exit()
 
+    res_eval = {}
+    combin_num = 0
+
+    if type =='RNA-RNA':
+        combine_X_A, combine_X_B = mknpy_RNA_RNA(combination_methods[combin_num],datapath)
+    elif type =='RNA-pro':
+        combine_X_A, combine_X_B = mknpy_RNA_pro(combination_methods[combin_num],datapath)
+    elif type =='RNA-compound':
+        combine_X_A, combine_X_B = mknpy_RNA_compound(combination_methods[combin_num],datapath)
+    print('The {}/{} combination of coding methods is {method}'.format(combin_num+1,len(combination_methods),method = combination_methods[combin_num]))
+    print('The data A shape:{}, The data B shape:{} '.format(combine_X_A.shape, combine_X_B.shape))
+
+    train_label = labeldata.iloc[:,2].tolist()
+    train_idx, valid_idx, test_idx = split_training_validation_test(train_label, size=[0.8,0.2,0])    
+    
+    train_X_A = combine_X_A[train_idx,:]
+    valid_X_A = combine_X_A[valid_idx,:]
+
+    train_X_B = combine_X_B[train_idx,:]
+    valid_X_B = combine_X_B[valid_idx,:]
+
+    train_y = np.array([int(train_label[i]) for i in train_idx])
+    valid_y = np.array([int(train_label[i]) for i in valid_idx])    
+
+    # normalization
+    scaler_r = MinMaxScaler().fit(train_X_A)
+    train_feature_RNA = scaler_r.transform(train_X_A)
+    test_feature_RNA = scaler_r.transform(valid_X_A)
+
+    scaler_p = MinMaxScaler().fit(train_X_B)
+    train_feature_pro = scaler_p.transform(train_X_B)
+    test_feature_pro = scaler_p.transform(valid_X_B)
+
+    # Specify sufficient boosting iterations to reach a minimum
+    batch_size_rs = [32,64,96,128] # 8,16,48,80,16,32,64,96,128
+    lr_rs = [0.0001,0.001,0.01]
+    epoch_rs = [100]
+
+    parameters_all = [[x,y,z] for x in batch_size_rs for y in lr_rs for z in epoch_rs] 
+    # parameters = random.sample(parameters_all, 10)
+    parameters = parameters_all
+
+    for index_emb, parameter_emb in enumerate(parameters):
+        print('Current parameter_emb is {}/{} dropout, learning rate, batchsize: {}'.format(index_emb,len(parameter_emb),parameter_emb))
+        
+        save_path = resultpath + '/Para_' + '_'.join([str(i) for i in parameter_emb])
+        os.makedirs(save_path, exist_ok = True)
+
+        batch_size_r = parameter_emb[0]
+        lr_r = parameter_emb[1]
+        epoch_r = parameter_emb[2]
+
+        # if type =='RNA-RNA':
+
+        # =====================================================================
+        # start SAE-based embedded feature extraction
+
+        X_train_RNA_sub = train_feature_RNA
+        X_train_pro = train_feature_pro
+        test_RNA_sub = test_feature_RNA
+
+        trainX = (X_train_RNA_sub, X_train_pro) 
+        validX = (test_RNA_sub, test_feature_pro)
+
+
+
+        batch_size = parameter_emb[0]
+        lr_r = parameter_emb[1]
+        drop_rate = parameter_emb[2]
+        epoch_num = 100
+
+        layers_RNA = [X_train_RNA_sub.shape[1], 512, 256, 128]
+        encoders_rna =  train_auto_encoder(X_train=X_train_RNA_sub,layers=layers_RNA, lr_r = lr_r, drop_rate = drop_rate,batch_size=batch_size, nb_epoch=epoch_num)
+
+        layers_pro = [X_train_pro.shape[1], 512, 256, 128] #2048, 512, 64
+        encoders_pro =  train_auto_encoder(X_train=X_train_pro,layers=layers_pro, lr_r = lr_r, drop_rate = drop_rate,batch_size=batch_size, nb_epoch=epoch_num)
+
+
+
+
+        # model parameters
+        batch_size_clf = parameter_emb[0]
+        lr_clf = parameter_emb[1]
+        drop_rate_clf = 0.2
+
+
+
+        epochs = 200 #300
+        patience = 20 #30 early stopping                
+        weight_decay = 1e-4
+        monitor = 'val_auc'
+        metric = 'ROC'
+
+
+        pro_coding_length = X_train_pro.shape[1]
+        rna_coding_length = X_train_RNA_sub.shape[1] 
+        # create model
+        clf, x_out_conjoint = conjoint_sae(encoders_rna,encoders_pro,  rna_coding_length, pro_coding_length,drop_rate_clf)
+
+
+        opt = tf.keras.optimizers.Adam(lr= lr_clf, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay= weight_decay) #
+        clf.compile(optimizer = opt, loss = 'categorical_crossentropy', metrics = ['accuracy'])
+        performance = CLA_EarlyStoppingAndPerformance((trainX, train_y), 
+                                                                (validX, valid_y), 
+                                                                patience = patience,
+                                                                metric = metric,
+                                                                criteria = monitor)
+        # fit your model
+        clf.fit(trainX, train_y, batch_size= batch_size_clf, 
+                                epochs= epochs, verbose= 1, shuffle = True, 
+                                validation_data = (validX, valid_y), 
+                                callbacks=[performance]) 
+
+        SAE_model = Model( inputs = clf.input, outputs = clf.get_layer('concatenate001').output )
+        train_feature_RNA_encode = SAE_model.predict(trainX)
+        test_feature_RNA_encode = SAE_model.predict(validX)
+        # end SAE-based embedded feature extraction
+        # =====================================================================
+                     
+
+        print('train_feature_encode.shape: {}'.format(train_feature_RNA_encode.shape))
+        print('test_feature_RNA_encode.shape: {}'.format(test_feature_RNA_encode.shape))
+
+        np.save(save_path + '/' + 'train_feature_encode.npy', train_feature_RNA_encode)
+        np.save(save_path + '/' + 'test_feature_encode.npy', test_feature_RNA_encode)
+
+        train_x = train_feature_RNA_encode
+        valid_x = test_feature_RNA_encode
+
+        # starting traing       
+        print('The classification model is: {}'.format(modelnm))
+        if modelnm == 'svm':
+            model,best_para = svm_two(train_x, valid_x, train_y, valid_y)
+            group = model.predict(valid_x) # test
+            score = model.predict_proba(valid_x) # get the confidence probability
+            Acc, Sn, Sp, Pre, MCC, AUC = calc_metrics(valid_y,score[:, 1],group)        
+        elif modelnm == 'RF':
+            model,best_para = RF(train_x, valid_x, train_y, valid_y)
+            group = model.predict(valid_x) # test
+            score = model.predict_proba(valid_x) # get the confidence probability
+            Acc, Sn, Sp, Pre, MCC, AUC = calc_metrics(valid_y,score[:, 1],group)
+        elif modelnm == 'xgboost':
+            Acc, Sn, Sp, Pre, MCC, AUC,best_para = xgboost_model(train_x,train_y,valid_x,valid_y)
+        elif modelnm == 'DNN' or modelnm == 'CNN':
+            Acc, Sn, Sp, Pre, MCC, AUC,best_para = train_model(train_x,train_y,valid_x,valid_y,modelnm = modelnm)
+
+        res_eval[index_emb+1] = [modelnm,parameter_emb,best_para, Acc, Sn, Sp, Pre, MCC, AUC]
+    indexs = ['model name','embedding parameters','best parameters','Acc','Sn','Sp','Pre','MCC','AUC']
+    evaluation_result = pd.DataFrame(res_eval,index = indexs).T
+    evaluation_result = evaluation_result.sort_values(by="MCC" , ascending=False)
+    evaluation_result.to_csv(resultpath + '/Evaluation_result.csv')
+    print(evaluation_result)
 
 # ========================================================================================
 

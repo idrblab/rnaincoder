@@ -131,4 +131,4 @@ python rnaincoder.py -t RNA-compound \
 ```
 
 # Question && issue
-If there are any usage problems, welcome to submit issues to this repository or contact author with email yunxiawang2022@gmail.com or Yunxia.Wang@childrens.harvard.edu or lfwyx@zju.edu.cn
+If there are any usage problems, welcome to submit issues to this repository or contact author with email Yunxia.Wang@childrens.harvard.edu or lfwyx@zju.edu.cn

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss} : %m%n" />
+			<Filters>
+				<ThresholdFilter level="INFO" />
+				<ThresholdFilter level="WARN" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+		</Console>
+		<RollingFile name="FILE" fileName="./rnaqua.log"
+			filePattern="./rnaqua-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%d{dd MMM yyyy HH:mm:ss} : %m%n%throwable{0}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+			<Filters>
+				<ThresholdFilter level="WARN" />
+			</Filters>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="FILE" />
+		</Root>
+	</Loggers>
+</Configuration>

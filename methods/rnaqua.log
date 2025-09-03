@@ -1,0 +1,3 @@
+11 7月 2022 21:06:10 : MessageBodyWriter not found for media type=application/xml, type=class edu.put.ma.model.services.StructuresSet, genericType=class edu.put.ma.model.services.StructuresSet.
+11 7月 2022 21:15:19 : MessageBodyWriter not found for media type=application/xml, type=class edu.put.ma.model.services.StructuresSet, genericType=class edu.put.ma.model.services.StructuresSet.
+11 7月 2022 21:44:17 : MessageBodyWriter not found for media type=application/xml, type=class edu.put.ma.model.services.StructuresSet, genericType=class edu.put.ma.model.services.StructuresSet.

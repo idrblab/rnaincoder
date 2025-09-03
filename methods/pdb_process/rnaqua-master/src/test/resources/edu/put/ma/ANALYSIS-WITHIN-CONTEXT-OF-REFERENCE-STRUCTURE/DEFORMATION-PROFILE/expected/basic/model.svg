@@ -1,0 +1,621 @@
+<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="592" width="352">
+<g  style="fill-opacity:1.0; stroke:black; stroke-width:1;">
+<rect  x="16" y="560" height="16" width="16" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<rect  x="32" y="560" height="16" width="16" fill="#ffffe5" stroke="#000000" stroke-width="1"/>
+<rect  x="48" y="560" height="16" width="16" fill="#ffffcc" stroke="#000000" stroke-width="1"/>
+<rect  x="64" y="560" height="16" width="16" fill="#ffffb2" stroke="#000000" stroke-width="1"/>
+<rect  x="80" y="560" height="16" width="16" fill="#ffff99" stroke="#000000" stroke-width="1"/>
+<rect  x="96" y="560" height="16" width="16" fill="#ffff7f" stroke="#000000" stroke-width="1"/>
+<rect  x="112" y="560" height="16" width="16" fill="#ffff66" stroke="#000000" stroke-width="1"/>
+<rect  x="128" y="560" height="16" width="16" fill="#ffff4c" stroke="#000000" stroke-width="1"/>
+<rect  x="144" y="560" height="16" width="16" fill="#ffff33" stroke="#000000" stroke-width="1"/>
+<rect  x="160" y="560" height="16" width="16" fill="#ffff19" stroke="#000000" stroke-width="1"/>
+<rect  x="176" y="560" height="16" width="16" fill="#ffff00" stroke="#000000" stroke-width="1"/>
+<rect  x="192" y="560" height="16" width="16" fill="#ffe500" stroke="#000000" stroke-width="1"/>
+<rect  x="208" y="560" height="16" width="16" fill="#ffcc00" stroke="#000000" stroke-width="1"/>
+<rect  x="224" y="560" height="16" width="16" fill="#ffb200" stroke="#000000" stroke-width="1"/>
+<rect  x="240" y="560" height="16" width="16" fill="#ff9900" stroke="#000000" stroke-width="1"/>
+<rect  x="256" y="560" height="16" width="16" fill="#ff7f00" stroke="#000000" stroke-width="1"/>
+<rect  x="272" y="560" height="16" width="16" fill="#ff6600" stroke="#000000" stroke-width="1"/>
+<rect  x="288" y="560" height="16" width="16" fill="#ff4c00" stroke="#000000" stroke-width="1"/>
+<rect  x="304" y="560" height="16" width="16" fill="#ff3300" stroke="#000000" stroke-width="1"/>
+<rect  x="320" y="560" height="16" width="16" fill="#ff1900" stroke="#000000" stroke-width="1"/>
+<text  x="16" y="592" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+0.0</text>
+<text  x="176" y="592" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+30.00</text>
+<text  x="320" y="592" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+60.00</text>
+<line  x1="16" y1="528" x2="336" y2="528" stroke="#000000" stroke-width="1"/>
+<line  x1="16" y1="528" x2="16" y2="368" stroke="#000000" stroke-width="1"/>
+<text  x="16" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="32" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="48" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="64" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="80" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="96" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="112" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="128" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="144" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="160" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="176" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="192" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="208" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="224" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="240" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="256" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="272" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="288" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="304" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="320" y="544" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<line  x1="24" y1="518.111970165" x2="40" y2="520.078152592" stroke="#00FF00" stroke-width="1"/>
+<line  x1="40" y1="520.078152592" x2="56" y2="519.764846571" stroke="#00FF00" stroke-width="1"/>
+<line  x1="56" y1="519.764846571" x2="72" y2="518.807423123" stroke="#00FF00" stroke-width="1"/>
+<line  x1="72" y1="518.807423123" x2="88" y2="519.032650035" stroke="#00FF00" stroke-width="1"/>
+<line  x1="88" y1="519.032650035" x2="104" y2="523.121635546" stroke="#00FF00" stroke-width="1"/>
+<line  x1="104" y1="523.121635546" x2="120" y2="523.233145725" stroke="#00FF00" stroke-width="1"/>
+<line  x1="120" y1="523.233145725" x2="136" y2="522.135002929" stroke="#00FF00" stroke-width="1"/>
+<line  x1="136" y1="522.135002929" x2="152" y2="513.916210029" stroke="#00FF00" stroke-width="1"/>
+<line  x1="152" y1="513.916210029" x2="168" y2="515.653873267" stroke="#00FF00" stroke-width="1"/>
+<line  x1="168" y1="515.653873267" x2="184" y2="520.471433353" stroke="#00FF00" stroke-width="1"/>
+<line  x1="184" y1="520.471433353" x2="200" y2="519.278792002" stroke="#00FF00" stroke-width="1"/>
+<line  x1="200" y1="519.278792002" x2="216" y2="507.660399731" stroke="#00FF00" stroke-width="1"/>
+<line  x1="216" y1="507.660399731" x2="232" y2="520.757756645" stroke="#00FF00" stroke-width="1"/>
+<line  x1="232" y1="520.757756645" x2="248" y2="522.222745346" stroke="#00FF00" stroke-width="1"/>
+<line  x1="248" y1="522.222745346" x2="264" y2="520.635995483" stroke="#00FF00" stroke-width="1"/>
+<line  x1="264" y1="520.635995483" x2="280" y2="519.90064027" stroke="#00FF00" stroke-width="1"/>
+<line  x1="280" y1="519.90064027" x2="296" y2="521.390830173" stroke="#00FF00" stroke-width="1"/>
+<line  x1="296" y1="521.390830173" x2="312" y2="520.201624284" stroke="#00FF00" stroke-width="1"/>
+<line  x1="312" y1="520.201624284" x2="328" y2="515.464259908" stroke="#00FF00" stroke-width="1"/>
+<line  x1="24" y1="516.741560388" x2="40" y2="517.999179587" stroke="#0000FF" stroke-width="1"/>
+<line  x1="40" y1="517.999179587" x2="56" y2="519.203122817" stroke="#0000FF" stroke-width="1"/>
+<line  x1="56" y1="519.203122817" x2="72" y2="520.522246168" stroke="#0000FF" stroke-width="1"/>
+<line  x1="72" y1="520.522246168" x2="88" y2="521.78854041" stroke="#0000FF" stroke-width="1"/>
+<line  x1="88" y1="521.78854041" x2="104" y2="522.154902591" stroke="#0000FF" stroke-width="1"/>
+<line  x1="104" y1="522.154902591" x2="120" y2="521.666493724" stroke="#0000FF" stroke-width="1"/>
+<line  x1="120" y1="521.666493724" x2="136" y2="519.364023041" stroke="#0000FF" stroke-width="1"/>
+<line  x1="136" y1="519.364023041" x2="152" y2="517.456780416" stroke="#0000FF" stroke-width="1"/>
+<line  x1="152" y1="517.456780416" x2="168" y2="513.188433223" stroke="#0000FF" stroke-width="1"/>
+<line  x1="168" y1="513.188433223" x2="184" y2="514.958067671" stroke="#0000FF" stroke-width="1"/>
+<line  x1="184" y1="514.958067671" x2="200" y2="517.608914729" stroke="#0000FF" stroke-width="1"/>
+<line  x1="200" y1="517.608914729" x2="216" y2="517.6500525" stroke="#0000FF" stroke-width="1"/>
+<line  x1="216" y1="517.6500525" x2="232" y2="520.903267604" stroke="#0000FF" stroke-width="1"/>
+<line  x1="232" y1="520.903267604" x2="248" y2="521.768392357" stroke="#0000FF" stroke-width="1"/>
+<line  x1="248" y1="521.768392357" x2="264" y2="522.34098523" stroke="#0000FF" stroke-width="1"/>
+<line  x1="264" y1="522.34098523" x2="280" y2="522.156985691" stroke="#0000FF" stroke-width="1"/>
+<line  x1="280" y1="522.156985691" x2="296" y2="520.35693841" stroke="#0000FF" stroke-width="1"/>
+<line  x1="296" y1="520.35693841" x2="312" y2="518.333007517" stroke="#0000FF" stroke-width="1"/>
+<line  x1="312" y1="518.333007517" x2="328" y2="515.677493104" stroke="#0000FF" stroke-width="1"/>
+<line  x1="24" y1="526.544678503" x2="40" y2="527.457437497" stroke="#FF0000" stroke-width="1"/>
+<line  x1="40" y1="527.457437497" x2="56" y2="527.703219318" stroke="#FF0000" stroke-width="1"/>
+<line  x1="56" y1="527.703219318" x2="72" y2="526.765651811" stroke="#FF0000" stroke-width="1"/>
+<line  x1="72" y1="526.765651811" x2="88" y2="525.197112413" stroke="#FF0000" stroke-width="1"/>
+<line  x1="88" y1="525.197112413" x2="104" y2="527.553515318" stroke="#FF0000" stroke-width="1"/>
+<line  x1="104" y1="527.553515318" x2="120" y2="527.482873382" stroke="#FF0000" stroke-width="1"/>
+<line  x1="120" y1="527.482873382" x2="136" y2="526.84613482" stroke="#FF0000" stroke-width="1"/>
+<line  x1="136" y1="526.84613482" x2="152" y2="525.498849425" stroke="#FF0000" stroke-width="1"/>
+<line  x1="152" y1="525.498849425" x2="168" y2="524.782455843" stroke="#FF0000" stroke-width="1"/>
+<line  x1="168" y1="524.782455843" x2="184" y2="527.578473138" stroke="#FF0000" stroke-width="1"/>
+<line  x1="184" y1="527.578473138" x2="200" y2="526.438932721" stroke="#FF0000" stroke-width="1"/>
+<line  x1="200" y1="526.438932721" x2="216" y2="524.874496794" stroke="#FF0000" stroke-width="1"/>
+<line  x1="216" y1="524.874496794" x2="232" y2="526.75849305" stroke="#FF0000" stroke-width="1"/>
+<line  x1="232" y1="526.75849305" x2="248" y2="526.919411598" stroke="#FF0000" stroke-width="1"/>
+<line  x1="248" y1="526.919411598" x2="264" y2="526.450691116" stroke="#FF0000" stroke-width="1"/>
+<line  x1="264" y1="526.450691116" x2="280" y2="527.632961574" stroke="#FF0000" stroke-width="1"/>
+<line  x1="280" y1="527.632961574" x2="296" y2="527.475894418" stroke="#FF0000" stroke-width="1"/>
+<line  x1="296" y1="527.475894418" x2="312" y2="527.660215815" stroke="#FF0000" stroke-width="1"/>
+<line  x1="312" y1="527.660215815" x2="328" y2="527.77095814" stroke="#FF0000" stroke-width="1"/>
+<text  x="0" y="336" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="16" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="320" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="320" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="320" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="320" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="320" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="320" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="320" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="320" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="320" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="32" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="304" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="304" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="304" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="304" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="304" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="304" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="304" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="304" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="304" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="48" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<rect  x="16" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="288" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="288" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="288" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="288" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="288" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="288" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="288" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="288" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="288" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="64" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<rect  x="16" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="272" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="272" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="272" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="272" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="272" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="272" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="272" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="272" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="272" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="80" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<rect  x="16" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="256" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="192" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="256" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="256" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="256" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="96" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<rect  x="16" y="240" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="240" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="240" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="240" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="112" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="224" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="224" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="224" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="128" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<rect  x="16" y="208" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="208" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="48" y="208" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="64" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="208" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="208" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="208" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="208" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="144" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="192" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="32" y="192" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="48" y="192" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="64" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="80" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="96" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="192" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="256" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="272" y="192" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="288" y="192" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="304" y="192" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="320" y="192" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<text  x="0" y="192" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="160" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="176" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="32" y="176" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="48" y="176" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="64" y="176" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="80" y="176" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="96" y="176" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="112" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="176" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="176" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="288" y="176" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="304" y="176" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="320" y="176" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<text  x="0" y="176" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="176" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<rect  x="16" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="48" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="64" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="80" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="160" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="160" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="160" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="192" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="144" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="32" y="144" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="48" y="144" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="64" y="144" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="80" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="144" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="144" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="304" y="144" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="144" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<text  x="0" y="144" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="208" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="128" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="32" y="128" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="48" y="128" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="64" y="128" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="80" y="128" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="96" y="128" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="112" y="128" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="128" y="128" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="128" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="128" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="176" y="128" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="192" y="128" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="128" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="128" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="128" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="256" y="128" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="272" y="128" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="288" y="128" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="304" y="128" height="16" width="16" fill="#ffff99" stroke="#ffff99" stroke-width="0"/>
+<rect  x="320" y="128" height="16" width="16" fill="#ffff99" stroke="#ffff99" stroke-width="0"/>
+<text  x="0" y="128" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="224" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<rect  x="16" y="112" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="112" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="48" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="112" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="112" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="112" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="112" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="240" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<rect  x="16" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="96" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="176" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="96" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="96" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<text  x="256" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+A</text>
+<rect  x="16" y="80" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="32" y="80" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="48" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="144" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="160" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="176" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="192" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="208" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="224" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="80" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="80" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="320" y="80" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<text  x="0" y="80" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<text  x="272" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+G</text>
+<rect  x="16" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="64" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="64" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="64" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="64" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="64" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="64" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="64" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="64" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<text  x="288" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+U</text>
+<rect  x="16" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="48" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="48" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="48" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="48" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="192" y="48" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="48" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="240" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="48" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="48" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="304" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<rect  x="16" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="112" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="128" y="32" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="144" y="32" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="160" y="32" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="176" y="32" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="192" y="32" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="208" y="32" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="224" y="32" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="256" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="32" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="32" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<text  x="320" y="352" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+C</text>
+<rect  x="16" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="32" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="48" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="64" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="80" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="96" y="16" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="112" y="16" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="128" y="16" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="144" y="16" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="160" y="16" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="176" y="16" height="16" width="16" fill="#ffffb2" stroke="#ffffb2" stroke-width="0"/>
+<rect  x="192" y="16" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="208" y="16" height="16" width="16" fill="#ffffcc" stroke="#ffffcc" stroke-width="0"/>
+<rect  x="224" y="16" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="240" y="16" height="16" width="16" fill="#ffffe5" stroke="#ffffe5" stroke-width="0"/>
+<rect  x="256" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="272" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="288" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="304" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<rect  x="320" y="16" height="16" width="16" fill="#ffffff" stroke="#ffffff" stroke-width="0"/>
+<text  x="0" y="528" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+ 0</text>
+<text  x="0" y="496" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+10</text>
+<text  x="0" y="464" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+20</text>
+<text  x="0" y="432" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+30</text>
+<text  x="0" y="400" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+40</text>
+<text  x="0" y="368" font-size="10" font-weight="normal" font-family="Verdana" stroke="#000000">
+50</text>
+</g>
+</svg>
